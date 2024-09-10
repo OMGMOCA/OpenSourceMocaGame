@@ -1,0 +1,151 @@
+[gd_scene load_steps=20 format=3 uid="uid://cdmepmrrw2utr"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_1mpw8"]
+[ext_resource type="Texture2D" uid="uid://dm7niftlkrca3" path="res://assets/sprites/characters/moca_z.png" id="2_77ebm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wetrq"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(0, 96, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l21lq"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(24, 96, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wwj0"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(48, 96, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxiwh"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(72, 96, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qdgp"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8lsj"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1de7h"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpnps"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2byv"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvdvo"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8i26n"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fvpg"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(96, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftc4v"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(120, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmj82"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(144, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gnsr"]
+atlas = ExtResource("2_77ebm")
+region = Rect2(168, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jvf2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wetrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l21lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wwj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxiwh")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qdgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8lsj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1de7h")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpnps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2byv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvdvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8i26n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fvpg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftc4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmj82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gnsr")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4023"]
+radius = 4.0
+height = 14.0
+
+[node name="char_z" type="CharacterBody2D" groups=["character"]]
+z_index = 6
+collision_layer = 2
+script = ExtResource("1_1mpw8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -10)
+sprite_frames = SubResource("SpriteFrames_7jvf2")
+animation = &"run"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_b4023")

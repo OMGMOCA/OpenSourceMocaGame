@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsqe454na8rxc"]
+
+[ext_resource type="Shader" path="res://scripts/gaint_robot.gdshader" id="1_dppwt"]
+[ext_resource type="ArrayMesh" uid="uid://ny17ukj0xok4" path="res://assets/blend_obj/gaintRobot.obj" id="2_wtfp5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_icvev"]
+shader = ExtResource("1_dppwt")
+shader_parameter/pixel_count = Vector2(512, 512)
+shader_parameter/darkness_factor = 1.0
+shader_parameter/saturation_factor = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nba8b"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Environment" id="Environment_8i81j"]
+ambient_light_source = 2
+ambient_light_color = Color(0.783523, 0.783523, 0.783523, 1)
+volumetric_fog_density = 0.0657
+volumetric_fog_albedo = Color(0.546809, 0.61166, 0.663544, 1)
+
+[node name="sprite_3d" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_icvev")
+texture = SubResource("ViewportTexture_nba8b")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport"]
+transform = Transform3D(-1.68546, -0.00860595, 1.84639, -0.00509442, 2.49999, 0.00700194, -1.8464, 0.000958108, -1.68548, 0, 0, 0)
+mesh = ExtResource("2_wtfp5")
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 0.973415, -0.229047, 0, 0.229047, 0.973415, 0, 0, 16.2316)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
+environment = SubResource("Environment_8i81j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(0.878347, -0.423408, 0.221884, 0.168396, 0.708482, 0.685344, -0.447381, -0.564606, 0.693593, 0.0193787, 11.1332, 10.2478)
+light_bake_mode = 1
+shadow_normal_bias = 4.0

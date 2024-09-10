@@ -1,1 +1,80 @@
-# OpenSourceMocaGame
+# Godot_2D_Editor
+
+# 节点树结构
+
+  	• GameControl
+		○ DataControl
+			§ Excel转json等方式导入数据
+		○ playerControl
+	• Camera控制
+		○ 跟随玩家模式
+		○ 过场动画模式
+	• Player(Characters类）
+		○ sprite
+		○ UI
+		○ scrpit
+	• CanvasLayer - HUD（GUI_manger)
+		○ UI_base_scene
+		○ 菜单scene - NinePatchRect
+			§ 音效
+			§ UI控制器脚本
+			§ 开始UI
+			§ 游戏UI
+				□ 得分
+				□ 选项按钮
+				□ 地图
+			§ 结束UI
+			§ 加载UI
+				□ 图片集
+	• LevelScene_XX
+		○ TileMaps & Assets 色板（工具：Adobe Color）
+		○ TileMaps
+			§ 前景
+			§ 场景
+				□ 有碰撞
+				□ 无碰撞
+			§ 背景
+		○ Assets（AnimatedSprite2D)
+			§ 装饰
+				□ 可设置碰撞
+				□ 静态装饰
+				□ 动态装饰
+			§ 编辑器标记
+				□ 可作为Scene添加至其他模块
+				□ 游戏运行后不显示
+				□ 空气墙 NinePatchRect
+			§ platform
+				□ base_platform
+					® 基础
+					® 单项碰撞
+				□ movable_platform
+					® AnimationPlayer：单向、乒乓
+					® 圆形旋转：脚本实现
+			§ 陷阱
+				□ 碰撞扣血
+					® 游戏边界
+					® 陷阱
+			§ 对话框
+				□ Speaker
+				□ Asker
+			§ 收集品
+		○ 玩法机关
+			§ 用头顶的问号方块
+			§ 按钮
+				□ 按钮
+				□ 重力按钮
+					® 可举起的箱子
+					® 可推动的箱子
+					® 角色动画配合
+			§ 传送带
+		○ Characters
+			§ 全局暂停的功能，为过场动画服务
+			§ Player
+			§ NPC
+			§ Enemies
+		○ 光照
+			§ 点光源
+				□ 聚光
+				□ 点光源
+			§ 全局光照
+			§ 光线遮挡物 -  LightOccluder2D
