@@ -1,6 +1,35 @@
-[gd_scene load_steps=4 format=4 uid="uid://b0w1nn1k5u0jm"]
+[gd_scene load_steps=14 format=4 uid="uid://b0w1nn1k5u0jm"]
 
 [ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="1_ds6pb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n2wyk"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_by4ry"]
+polygon = PackedVector2Array(-8, 0, 8, -0.25, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wg2yx"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_skhm6"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qvpbl"]
+polygon = PackedVector2Array(-8, 0, 8, -0.25, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n433c"]
+polygon = PackedVector2Array(-8, 0, 8, -0.25, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_dbwox"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kj47b"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g8mpd"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gdpu7"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6yh43"]
 texture = ExtResource("1_ds6pb")
@@ -17,10 +46,13 @@ texture = ExtResource("1_ds6pb")
 5:0/0 = 0
 5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:0/0 = 0
+6:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_by4ry")
 6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:0/0 = 0
+7:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_qvpbl")
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:0/0 = 0
+8:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_kj47b")
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:0/0 = 0
 9:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -5.875, 8, 0.375, -8, -1.25)
@@ -41,10 +73,13 @@ texture = ExtResource("1_ds6pb")
 5:1/0 = 0
 5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:1/0 = 0
+6:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_wg2yx")
 6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:1/0 = 0
+7:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_n433c")
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:1/0 = 0
+8:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_g8mpd")
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:1/0 = 0
 9:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -5.875, 8, 0.375, -8, -1.25)
@@ -65,10 +100,13 @@ texture = ExtResource("1_ds6pb")
 5:2/0 = 0
 5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:2/0 = 0
+6:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_skhm6")
 6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:2/0 = 0
+7:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_dbwox")
 7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 8:2/0 = 0
+8:2/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_gdpu7")
 8:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 9:2/0 = 0
 9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -5.875, 8, 0.375, -8, -1.25)
@@ -165,10 +203,13 @@ texture = ExtResource("1_ds6pb")
 2:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_b0mfi"]
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_n2wyk")
 sources/0 = SubResource("TileSetAtlasSource_6yh43")
 
-[node name="level_temp2copy" type="Node2D"]
+[node name="tilemap_bg" type="Node2D"]
 position = Vector2(0, 88)
 
 [node name="background" type="TileMapLayer" parent="."]

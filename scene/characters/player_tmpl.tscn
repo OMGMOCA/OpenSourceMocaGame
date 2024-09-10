@@ -162,7 +162,7 @@ shape = SubResource("CapsuleShape2D_d0nku")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -7)
 scale = Vector2(1.5, 1.5)
-color = Color(1, 1, 1, 0.486275)
+energy = 0.5
 range_layer_min = -10
 range_layer_max = 10
 shadow_enabled = true
