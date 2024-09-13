@@ -5,6 +5,7 @@ class_name MyCharacter
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @export var health : int = 100
 @export var destroy_wait_time : int = 3
+@export var flip : bool = false
 
 var is_dead = false
 enum animation_status { Idle, Run, Jump, Death }
@@ -49,9 +50,14 @@ func character_move_control(delta: float) -> void:
 
 func character_flip(animated_sprite: AnimatedSprite2D, dir : float) -> void:
 	if dir > 0:
-		animated_sprite.flip_h = false
+		flip = false
 	elif dir < 0:
+		flip = true
+	
+	if flip:
 		animated_sprite.flip_h = true
+	else:
+		animated_sprite.flip_h = false
 		
 func animation_status_ctrl(dir : float) -> void:
 	if is_dead:
