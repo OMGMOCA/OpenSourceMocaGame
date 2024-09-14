@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ckkmcus1rh2og"]
+[gd_scene load_steps=29 format=3 uid="uid://ckkmcus1rh2og"]
 
 [ext_resource type="PackedScene" uid="uid://b0w1nn1k5u0jm" path="res://scene/tilemap/tilemap_tmpl.tscn" id="3_0wajj"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="4_ww1x8"]
@@ -12,6 +12,12 @@
 [ext_resource type="Script" path="res://scene/level/trigger.gd" id="9_hbi2o"]
 [ext_resource type="PackedScene" uid="uid://b61duajtcm6w" path="res://scene/characters/player_cc.tscn" id="10_vv3pn"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="11_qh1mf"]
+[ext_resource type="PackedScene" uid="uid://dr1xscsixcct2" path="res://scene/characters/char_tyler.tscn" id="13_l1kpx"]
+[ext_resource type="PackedScene" uid="uid://bnpm8i126hjy8" path="res://scene/characters/char_builder.tscn" id="14_ivk2u"]
+[ext_resource type="PackedScene" uid="uid://vq1ml5pjp1g0" path="res://scene/characters/char_Neo-Capitalists.tscn" id="15_8vnxc"]
+[ext_resource type="PackedScene" uid="uid://djus27l6sfiem" path="res://scene/characters/char_Dreamer.tscn" id="16_2y35u"]
+[ext_resource type="PackedScene" uid="uid://dp2ppu3r3rej4" path="res://scene/characters/char_connector.tscn" id="17_0hcpb"]
+[ext_resource type="PackedScene" uid="uid://dkb867j16tajs" path="res://scene/characters/char_oldwon.tscn" id="18_1ewsy"]
 
 [sub_resource type="Gradient" id="Gradient_k2w0d"]
 offsets = PackedFloat32Array(0.364865, 1)
@@ -64,8 +70,9 @@ fill_from = Vector2(0.5, 0.491453)
 [node name="level_temp_0822" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("5_518qv")]
-position = Vector2(550, 52)
-script = ExtResource("7_rjn42")
+z_index = 9
+position = Vector2(-318, -13)
+SPEED = 80.0
 flip = true
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ww1x8")]
@@ -73,7 +80,7 @@ texture_filter = 2
 position = Vector2(48, -104)
 zoom = Vector2(4, 4)
 limit_bottom = 1080
-player = NodePath("../Player3")
+player = NodePath("../Player")
 
 [node name="tilemap_bg" parent="." instance=ExtResource("3_0wajj")]
 position = Vector2(16, 160)
@@ -201,7 +208,7 @@ region_rect = Rect2(100, 54, 15, 13)
 [node name="Timer" type="Timer" parent="Area2D3"]
 
 [node name="Area2D4" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "timer")]
-position = Vector2(525, 37)
+position = Vector2(264, -27)
 collision_mask = 2
 script = ExtResource("9_hbi2o")
 sprite = NodePath("Sprite2D")
@@ -213,18 +220,166 @@ shape = SubResource("RectangleShape2D_bdrf6")
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D4"]
 visible = false
-position = Vector2(25, -11)
+position = Vector2(28, -29)
 texture = ExtResource("9_f710f")
 region_enabled = true
 region_rect = Rect2(75, 53, 19, 16)
 
 [node name="Timer" type="Timer" parent="Area2D4"]
 
-[node name="Player3" parent="." instance=ExtResource("10_vv3pn")]
-position = Vector2(-324, -7)
+[node name="Area2D5" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "timer")]
+position = Vector2(342, -27)
+collision_mask = 2
+script = ExtResource("9_hbi2o")
+sprite = NodePath("Sprite2D")
+timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D5"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_bdrf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D5"]
+visible = false
+position = Vector2(30, 14)
+texture = ExtResource("9_f710f")
+region_enabled = true
+region_rect = Rect2(3.22888, 29.5322, 67.465, 15.4517)
+
+[node name="Timer" type="Timer" parent="Area2D5"]
+
+[node name="Area2D6" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "timer")]
+position = Vector2(427, 5)
+collision_mask = 2
+script = ExtResource("9_hbi2o")
+sprite = NodePath("Sprite2D")
+timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D6"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_bdrf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D6"]
+visible = false
+position = Vector2(26, -12)
+texture = ExtResource("9_f710f")
+region_enabled = true
+region_rect = Rect2(52.8483, 52.1653, 16.1046, 19.369)
+
+[node name="Timer" type="Timer" parent="Area2D6"]
+
+[node name="Area2D7" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "timer")]
+position = Vector2(-225, 37)
+collision_mask = 2
+script = ExtResource("9_hbi2o")
+sprite = NodePath("Sprite2D")
+timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D7"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_bdrf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D7"]
+visible = false
+position = Vector2(24, -12)
+texture = ExtResource("9_f710f")
+region_enabled = true
+region_rect = Rect2(27.3857, 49.989, 18.7161, 22.1982)
+
+[node name="Timer" type="Timer" parent="Area2D7"]
+
+[node name="Area2D8" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "timer")]
+position = Vector2(-139, -187)
+collision_mask = 2
+script = ExtResource("9_hbi2o")
+sprite = NodePath("Sprite2D")
+timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D8"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_bdrf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D8"]
+visible = false
+position = Vector2(-27, -13)
+texture = ExtResource("9_f710f")
+region_enabled = true
+region_rect = Rect2(2.35836, 49.989, 21.9805, 20.4571)
+
+[node name="Timer" type="Timer" parent="Area2D8"]
+
+[node name="Area2D9" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "timer")]
+position = Vector2(-15, -139)
+collision_mask = 2
+script = ExtResource("9_hbi2o")
+sprite = NodePath("Sprite2D")
+timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D9"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_bdrf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D9"]
+visible = false
+position = Vector2(-28, -15)
+texture = ExtResource("9_f710f")
+region_enabled = true
+region_rect = Rect2(50.4544, 52.3829, 20.2395, 18.2808)
+
+[node name="Timer" type="Timer" parent="Area2D9"]
+
+[node name="Area2D10" type="Area2D" parent="." node_paths=PackedStringArray("sprite", "timer")]
+position = Vector2(138, 5)
+collision_mask = 2
+script = ExtResource("9_hbi2o")
+sprite = NodePath("Sprite2D")
+timer = NodePath("Timer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D10"]
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_bdrf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D10"]
+visible = false
+position = Vector2(29, -13)
+texture = ExtResource("9_f710f")
+region_enabled = true
+region_rect = Rect2(100, 53, 15, 14)
+
+[node name="Timer" type="Timer" parent="Area2D10"]
+
+[node name="char_cch" parent="." instance=ExtResource("10_vv3pn")]
+z_index = 8
+position = Vector2(291, -28)
+script = ExtResource("7_rjn42")
 SPEED = 90.0
 
 [node name="cat" parent="." instance=ExtResource("11_qh1mf")]
 position = Vector2(-251, -60)
+script = ExtResource("7_rjn42")
+flip = true
+
+[node name="char_tyler" parent="." instance=ExtResource("13_l1kpx")]
+position = Vector2(371, 20)
+script = ExtResource("7_rjn42")
+
+[node name="char_builder" parent="." instance=ExtResource("14_ivk2u")]
+position = Vector2(-43, -124)
+script = ExtResource("7_rjn42")
+
+[node name="Player3" parent="." instance=ExtResource("15_8vnxc")]
+position = Vector2(-166, -172)
+script = ExtResource("7_rjn42")
+
+[node name="Player4" parent="." instance=ExtResource("16_2y35u")]
+position = Vector2(-201, 52)
+script = ExtResource("7_rjn42")
+flip = true
+
+[node name="Player5" parent="." instance=ExtResource("17_0hcpb")]
+position = Vector2(166, 20)
+script = ExtResource("7_rjn42")
+
+[node name="Player6" parent="." instance=ExtResource("18_1ewsy")]
+position = Vector2(452, 20)
 script = ExtResource("7_rjn42")
 flip = true
