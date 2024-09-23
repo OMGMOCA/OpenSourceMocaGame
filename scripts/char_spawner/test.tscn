@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://drljmina30gv8"]
+
+[ext_resource type="Script" path="res://scripts/char_spawner/testeditor.gd" id="1_hx553"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_hx553")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="."]
+
+[node name="AnimatedSprite2D6" type="AnimatedSprite2D" parent="."]

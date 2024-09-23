@@ -1,5 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://ckkmcus1rh2og"]
 
+[ext_resource type="Script" path="res://scripts/char_spawner/moca_character2d.gd" id="2_vli4a"]
 [ext_resource type="PackedScene" uid="uid://b0w1nn1k5u0jm" path="res://scene/tilemap/tilemap_tmpl.tscn" id="3_0wajj"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="4_ww1x8"]
 [ext_resource type="PackedScene" uid="uid://hxtrcq6dknbp" path="res://scene/characters/char_dm.tscn" id="5_518qv"]
@@ -9,16 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://cybsac185xf73" path="res://scene/characters/player_tmpl.tscn" id="8_jlumd"]
 [ext_resource type="PackedScene" uid="uid://bevivr8hqkll2" path="res://scene/scn_assets/water.tscn" id="9_1slvk"]
 [ext_resource type="Texture2D" uid="uid://dg0u1ugxpen21" path="res://assets/sprites/speaker.png" id="9_f710f"]
-[ext_resource type="Script" path="res://scene/level/trigger.gd" id="9_hbi2o"]
+[ext_resource type="Script" path="res://scripts/trigger.gd" id="9_hbi2o"]
 [ext_resource type="PackedScene" uid="uid://b61duajtcm6w" path="res://scene/characters/player_cc.tscn" id="10_vv3pn"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="11_qh1mf"]
 [ext_resource type="PackedScene" uid="uid://dr1xscsixcct2" path="res://scene/characters/char_tyler.tscn" id="13_l1kpx"]
 [ext_resource type="PackedScene" uid="uid://bnpm8i126hjy8" path="res://scene/characters/char_builder.tscn" id="14_ivk2u"]
 [ext_resource type="PackedScene" uid="uid://vq1ml5pjp1g0" path="res://scene/characters/char_Neo-Capitalists.tscn" id="15_8vnxc"]
-[ext_resource type="PackedScene" uid="uid://djus27l6sfiem" path="res://scene/characters/char_Dreamer.tscn" id="16_2y35u"]
 [ext_resource type="PackedScene" uid="uid://dp2ppu3r3rej4" path="res://scene/characters/char_connector.tscn" id="17_0hcpb"]
 [ext_resource type="PackedScene" uid="uid://dkb867j16tajs" path="res://scene/characters/char_oldwon.tscn" id="18_1ewsy"]
-[ext_resource type="FontFile" uid="uid://n0w13t0gtav4" path="res://assets/fonts/PixelOperator8.ttf" id="19_k6wyo"]
+[ext_resource type="FontFile" uid="uid://dl5adlxgska4g" path="res://assets/fonts/PixelOperator8.ttf" id="19_k6wyo"]
 
 [sub_resource type="Gradient" id="Gradient_k2w0d"]
 offsets = PackedFloat32Array(0.364865, 1)
@@ -73,8 +73,11 @@ fill_from = Vector2(0.5, 0.491453)
 [node name="Player" parent="." instance=ExtResource("5_518qv")]
 z_index = 9
 position = Vector2(-318, -13)
-SPEED = 80.0
+script = ExtResource("2_vli4a")
+speed = 100.0
+destroy_wait_time = 3.0
 flip = true
+begin = false
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ww1x8")]
 texture_filter = 2
@@ -82,8 +85,9 @@ position = Vector2(48, -104)
 zoom = Vector2(4, 4)
 limit_bottom = 1080
 limit_smoothed = true
-position_smoothing_speed = 10.0
-player = NodePath("../Player")
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+player = NodePath("../char_cch")
 
 [node name="tilemap_bg" parent="." instance=ExtResource("3_0wajj")]
 position = Vector2(16, 160)
@@ -353,7 +357,6 @@ region_rect = Rect2(100, 53, 15, 14)
 [node name="char_cch" parent="." instance=ExtResource("10_vv3pn")]
 z_index = 8
 position = Vector2(291, -28)
-script = ExtResource("7_rjn42")
 SPEED = 90.0
 
 [node name="cat" parent="." instance=ExtResource("11_qh1mf")]
@@ -372,11 +375,6 @@ script = ExtResource("7_rjn42")
 [node name="Player3" parent="." instance=ExtResource("15_8vnxc")]
 position = Vector2(-166, -172)
 script = ExtResource("7_rjn42")
-
-[node name="Player4" parent="." instance=ExtResource("16_2y35u")]
-position = Vector2(-201, 52)
-script = ExtResource("7_rjn42")
-flip = true
 
 [node name="Player5" parent="." instance=ExtResource("17_0hcpb")]
 position = Vector2(166, 20)

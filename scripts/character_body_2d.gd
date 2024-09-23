@@ -16,7 +16,6 @@ signal character_dead
 signal character_destroy
 
 func _physics_process(delta: float) -> void:
-	
 	character_move_control(delta)
 	move_and_slide()
 
