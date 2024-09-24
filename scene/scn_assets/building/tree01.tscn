@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdes4rwa6n7kc"]
+
+[ext_resource type="Texture2D" uid="uid://chkryot0q08kj" path="res://assets/sprites/moca_street01.png" id="1_6rh24"]
+[ext_resource type="Shader" uid="uid://b28xppvnblvxs" path="res://scripts/swayable.tres" id="1_wnq57"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k8x5g"]
+shader = ExtResource("1_wnq57")
+shader_parameter/wind_strength = 0.1
+shader_parameter/speed = 1.5
+shader_parameter/start_time = null
+
+[node name="tree01_01" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_k8x5g")
+position = Vector2(0.5, -1)
+texture = ExtResource("1_6rh24")
+offset = Vector2(0, -26.5)
+region_enabled = true
+region_rect = Rect2(277, 140, 93, 63)

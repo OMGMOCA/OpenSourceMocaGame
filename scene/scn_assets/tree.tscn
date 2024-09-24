@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dblbo1bfq1ksx"]
+
+[ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="1_j8pdi"]
+[ext_resource type="Shader" path="res://scripts/color_change.gdshader" id="1_j76ec"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kyj5"]
+shader = ExtResource("1_j76ec")
+shader_parameter/pixel_count = Vector2(256, 256)
+shader_parameter/darkness_factor = 1.0
+shader_parameter/saturation_factor = 1.0
+shader_parameter/hue_factor = 0.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4kyj5")
+position = Vector2(0, -25)
+texture = ExtResource("1_j8pdi")
+region_enabled = true
+region_rect = Rect2(79, 47, 18, 49)
