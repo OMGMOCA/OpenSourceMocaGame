@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b56t3o558a21e"]
 
-[ext_resource type="Texture2D" uid="uid://bjfwwfygcoc2x" path="res://assets/sprites/building/building01.png" id="1_cyqwx"]
+[ext_resource type="Texture2D" uid="uid://bjfwwfygcoc2x" path="res://assets/sprites/building/static buildings.png" id="1_cyqwx"]
 
 [node name="building05_01" type="Node2D"]
 
