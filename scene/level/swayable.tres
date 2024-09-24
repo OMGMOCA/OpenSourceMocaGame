@@ -1,0 +1,37 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://b28xppvnblvxs"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_04lwu"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorDecompose" id="VisualShaderNodeVectorDecompose_vanyr"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_fstql"]
+parameter_name = "wind_strength"
+hint = 1
+max = 10.0
+default_value_enabled = true
+default_value = 2.0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_lqaps"]
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+"
+graph_offset = Vector2(-380, 0)
+mode = 1
+flags/light_only = false
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_04lwu")
+nodes/vertex/2/position = Vector2(-680, 120)
+nodes/vertex/3/node = SubResource("VisualShaderNodeVectorDecompose_vanyr")
+nodes/vertex/3/position = Vector2(-380, 120)
+nodes/vertex/4/node = SubResource("VisualShaderNodeFloatParameter_fstql")
+nodes/vertex/4/position = Vector2(-700, 280)
+nodes/vertex/5/node = SubResource("VisualShaderNodeFloatOp_lqaps")
+nodes/vertex/5/position = Vector2(-80, 160)
+nodes/vertex/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 5, 0)

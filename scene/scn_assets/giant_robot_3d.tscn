@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bsqe454na8rxc"]
 
-[ext_resource type="Shader" path="res://scripts/gaint_robot.gdshader" id="1_dppwt"]
+[ext_resource type="Shader" path="res://scripts/color_change.gdshader" id="1_dppwt"]
 [ext_resource type="ArrayMesh" uid="uid://ny17ukj0xok4" path="res://assets/blend_obj/gaintRobot.obj" id="2_wtfp5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_icvev"]
@@ -8,6 +8,7 @@ shader = ExtResource("1_dppwt")
 shader_parameter/pixel_count = Vector2(512, 512)
 shader_parameter/darkness_factor = 1.0
 shader_parameter/saturation_factor = 1.0
+shader_parameter/hue_factor = 0.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nba8b"]
 viewport_path = NodePath("SubViewport")

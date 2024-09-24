@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dblbo1bfq1ksx"]
+
+[ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="1_j8pdi"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -25)
+texture = ExtResource("1_j8pdi")
+region_enabled = true
+region_rect = Rect2(79, 47, 18, 49)

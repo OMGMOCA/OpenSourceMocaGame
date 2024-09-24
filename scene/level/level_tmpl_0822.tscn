@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ckkmcus1rh2og"]
+[gd_scene load_steps=31 format=3 uid="uid://ckkmcus1rh2og"]
 
 [ext_resource type="Script" path="res://scripts/char_spawner/moca_character2d.gd" id="2_vli4a"]
 [ext_resource type="PackedScene" uid="uid://b0w1nn1k5u0jm" path="res://scene/tilemap/tilemap_tmpl.tscn" id="3_0wajj"]
@@ -18,7 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://vq1ml5pjp1g0" path="res://scene/characters/char_Neo-Capitalists.tscn" id="15_8vnxc"]
 [ext_resource type="PackedScene" uid="uid://dp2ppu3r3rej4" path="res://scene/characters/char_connector.tscn" id="17_0hcpb"]
 [ext_resource type="PackedScene" uid="uid://dkb867j16tajs" path="res://scene/characters/char_oldwon.tscn" id="18_1ewsy"]
-[ext_resource type="FontFile" uid="uid://dl5adlxgska4g" path="res://assets/fonts/PixelOperator8.ttf" id="19_k6wyo"]
+[ext_resource type="FontFile" uid="uid://n0w13t0gtav4" path="res://assets/fonts/PixelOperator8.ttf" id="19_k6wyo"]
+[ext_resource type="PackedScene" uid="uid://cgvo031r347gp" path="res://scene/scn_assets/swaying_tree.tscn" id="20_yq2bc"]
 
 [sub_resource type="Gradient" id="Gradient_k2w0d"]
 offsets = PackedFloat32Array(0.364865, 1)
@@ -73,11 +74,6 @@ fill_from = Vector2(0.5, 0.491453)
 [node name="Player" parent="." instance=ExtResource("5_518qv")]
 z_index = 9
 position = Vector2(-318, -13)
-script = ExtResource("2_vli4a")
-speed = 100.0
-destroy_wait_time = 3.0
-flip = true
-begin = false
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ww1x8")]
 texture_filter = 2
@@ -87,7 +83,7 @@ limit_bottom = 1080
 limit_smoothed = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-player = NodePath("../char_cch")
+player = NodePath("../Player")
 
 [node name="tilemap_bg" parent="." instance=ExtResource("3_0wajj")]
 position = Vector2(16, 160)
@@ -357,7 +353,10 @@ region_rect = Rect2(100, 53, 15, 14)
 [node name="char_cch" parent="." instance=ExtResource("10_vv3pn")]
 z_index = 8
 position = Vector2(291, -28)
-SPEED = 90.0
+script = ExtResource("2_vli4a")
+speed = 100.0
+destroy_wait_time = 3.0
+begin = false
 
 [node name="cat" parent="." instance=ExtResource("11_qh1mf")]
 position = Vector2(-251, -60)
@@ -397,3 +396,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("19_k6wyo")
 text = "AAAA
 "
+
+[node name="movable_tree" parent="." instance=ExtResource("20_yq2bc")]
+position = Vector2(-184, 6)
