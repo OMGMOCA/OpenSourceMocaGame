@@ -23,7 +23,6 @@ render_mode blend_mix;
 
 
 "
-graph_offset = Vector2(-380, 0)
 mode = 1
 flags/light_only = false
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_04lwu")

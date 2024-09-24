@@ -1,0 +1,139 @@
+[gd_scene load_steps=16 format=3 uid="uid://cdbbst1mjaqfb"]
+
+[ext_resource type="PackedScene" uid="uid://hxtrcq6dknbp" path="res://scene/characters/char_dm.tscn" id="1_q6yf3"]
+[ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_fy2dc"]
+[ext_resource type="PackedScene" uid="uid://bsqe454na8rxc" path="res://scene/scn_assets/giant_robot_3d.tscn" id="4_xgbhx"]
+[ext_resource type="PackedScene" uid="uid://bevivr8hqkll2" path="res://scene/scn_assets/water.tscn" id="5_7tbgp"]
+[ext_resource type="PackedScene" uid="uid://bkx6d30u03giq" path="res://scene/tilemap/tilemap_moca_0924.tscn" id="5_84fwe"]
+[ext_resource type="PackedScene" uid="uid://cgvo031r347gp" path="res://scene/scn_assets/swaying_tree.tscn" id="20_j21tr"]
+
+[sub_resource type="Gradient" id="Gradient_wm6v1"]
+offsets = PackedFloat32Array(0, 0.561562)
+colors = PackedColorArray(1, 0.65098, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dsdkh"]
+gradient = SubResource("Gradient_wm6v1")
+fill = 1
+fill_from = Vector2(0.504274, 0.487179)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_5iee7"]
+offsets = PackedFloat32Array(0, 0.63964)
+colors = PackedColorArray(1, 0.909804, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sa4mx"]
+gradient = SubResource("Gradient_5iee7")
+fill = 1
+fill_from = Vector2(0.5, 0.491453)
+
+[sub_resource type="Gradient" id="Gradient_k2w0d"]
+offsets = PackedFloat32Array(0.737237, 0.995495)
+colors = PackedColorArray(0.280704, 0.858665, 1, 1, 0.980211, 0.705353, 0.763552, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bka6r"]
+gradient = SubResource("Gradient_k2w0d")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_ehxmf"]
+offsets = PackedFloat32Array(0, 0.236593, 0.742902, 1)
+colors = PackedColorArray(0.631373, 1, 0, 0, 0, 0.843137, 0, 1, 0, 0.835294, 1, 1, 0, 0.835294, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qx3am"]
+gradient = SubResource("Gradient_ehxmf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f8ev2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 200, 1)
+spread = 20.0
+initial_velocity_min = 10.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 20, 0)
+scale_min = 0.5
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_qx3am")
+
+[node name="level_temp_0822" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_q6yf3")]
+z_index = 9
+position = Vector2(-318, -13)
+
+[node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_fy2dc")]
+texture_filter = 2
+position = Vector2(48, -104)
+offset = Vector2(0, -40)
+zoom = Vector2(3, 3)
+limit_bottom = 1080
+limit_smoothed = true
+player = NodePath("../Player")
+
+[node name="light" type="Node" parent="."]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="light"]
+color = Color(0.154876, 0.154876, 0.154876, 1)
+blend_mode = 1
+range_layer_min = -100
+range_layer_max = 100
+
+[node name="PointLight2D" type="PointLight2D" parent="light"]
+position = Vector2(-283, 42)
+range_z_min = -10
+range_z_max = 10
+range_layer_min = -10
+range_layer_max = 10
+texture = SubResource("GradientTexture2D_dsdkh")
+
+[node name="PointLight2D2" type="PointLight2D" parent="light"]
+position = Vector2(-107, -46)
+scale = Vector2(3, 3)
+color = Color(0.493545, 0.493546, 0.493546, 1)
+energy = 2.0
+range_z_min = -10
+range_z_max = 10
+range_layer_min = -10
+range_layer_max = 10
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_sa4mx")
+texture_scale = 1.55
+
+[node name="scene" type="Node" parent="."]
+
+[node name="movable_tree" parent="scene" instance=ExtResource("20_j21tr")]
+position = Vector2(-184, 6)
+
+[node name="water" parent="scene" instance=ExtResource("5_7tbgp")]
+position = Vector2(1, 28)
+scale = Vector2(1.4, 0.7)
+
+[node name="tilemap" type="Node" parent="."]
+
+[node name="tilemap_bg2" parent="tilemap" instance=ExtResource("5_84fwe")]
+position = Vector2(16, 160)
+
+[node name="background" type="Node" parent="."]
+
+[node name="Parallax" type="ParallaxBackground" parent="background"]
+
+[node name="bg01" type="ParallaxLayer" parent="background/Parallax"]
+motion_scale = Vector2(0.3, 0.8)
+
+[node name="sprite_3d" parent="background/Parallax/bg01" instance=ExtResource("4_xgbhx")]
+position = Vector2(-11, -15)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="background/Parallax"]
+
+[node name="GradientBackground" type="Sprite2D" parent="background/Parallax/ParallaxLayer"]
+z_index = -100
+position = Vector2(0, -131)
+scale = Vector2(40, 7)
+texture = SubResource("GradientTexture2D_bka6r")
+
+[node name="Particles" type="Node" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Particles"]
+z_index = 3
+position = Vector2(-31, -76)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_f8ev2")
+visibility_rect = Rect2(-500, -200, 1000, 400)

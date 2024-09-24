@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgvo031r347gp"]
 
-[ext_resource type="Shader" uid="uid://b28xppvnblvxs" path="res://scene/level/swayable.tres" id="1_5rod3"]
+[ext_resource type="Shader" uid="uid://b28xppvnblvxs" path="res://scripts/swayable.tres" id="1_5rod3"]
 [ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="2_a8ps6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2yi2n"]

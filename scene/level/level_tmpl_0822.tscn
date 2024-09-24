@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ckkmcus1rh2og"]
+[gd_scene load_steps=32 format=3 uid="uid://ckkmcus1rh2og"]
 
 [ext_resource type="Script" path="res://scripts/char_spawner/moca_character2d.gd" id="2_vli4a"]
 [ext_resource type="PackedScene" uid="uid://b0w1nn1k5u0jm" path="res://scene/tilemap/tilemap_tmpl.tscn" id="3_0wajj"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dkb867j16tajs" path="res://scene/characters/char_oldwon.tscn" id="18_1ewsy"]
 [ext_resource type="FontFile" uid="uid://n0w13t0gtav4" path="res://assets/fonts/PixelOperator8.ttf" id="19_k6wyo"]
 [ext_resource type="PackedScene" uid="uid://cgvo031r347gp" path="res://scene/scn_assets/swaying_tree.tscn" id="20_yq2bc"]
+[ext_resource type="PackedScene" uid="uid://dblbo1bfq1ksx" path="res://scene/scn_assets/tree.tscn" id="21_ia00l"]
 
 [sub_resource type="Gradient" id="Gradient_k2w0d"]
 offsets = PackedFloat32Array(0.364865, 1)
@@ -78,11 +79,10 @@ position = Vector2(-318, -13)
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_ww1x8")]
 texture_filter = 2
 position = Vector2(48, -104)
+offset = Vector2(0, -50)
 zoom = Vector2(4, 4)
 limit_bottom = 1080
 limit_smoothed = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
 player = NodePath("../Player")
 
 [node name="tilemap_bg" parent="." instance=ExtResource("3_0wajj")]
@@ -399,3 +399,19 @@ text = "AAAA
 
 [node name="movable_tree" parent="." instance=ExtResource("20_yq2bc")]
 position = Vector2(-184, 6)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+region_enabled = true
+
+[node name="Node2D" parent="." instance=ExtResource("21_ia00l")]
+position = Vector2(-411, -45)
+
+[node name="Node2D2" parent="." instance=ExtResource("21_ia00l")]
+position = Vector2(-377, -43)
+
+[node name="cat2" parent="." instance=ExtResource("11_qh1mf")]
+position = Vector2(-267, 52)
+script = ExtResource("2_vli4a")
+speed = 100.0
+destroy_wait_time = 3.0
+begin = false
