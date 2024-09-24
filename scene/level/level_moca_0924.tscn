@@ -206,3 +206,6 @@ script = ExtResource("12_4xn3q")
 speed = 100.0
 destroy_wait_time = 3.0
 begin = false
+
+[node name="building04_01" parent="." instance=ExtResource("8_ud0r7")]
+position = Vector2(-33, -60)
