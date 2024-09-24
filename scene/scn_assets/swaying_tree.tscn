@@ -5,11 +5,13 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2yi2n"]
 shader = ExtResource("1_5rod3")
+shader_parameter/wind_strength = 0.05
+shader_parameter/speed = 2.0
+shader_parameter/start_time = 0.029
 
 [node name="movable_tree" type="Sprite2D"]
 material = SubResource("ShaderMaterial_2yi2n")
-position = Vector2(0, -47)
-scale = Vector2(2, 2)
 texture = ExtResource("2_a8ps6")
+offset = Vector2(0, -23)
 region_enabled = true
 region_rect = Rect2(41, 79, 32, 47)

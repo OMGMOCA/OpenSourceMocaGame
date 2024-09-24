@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgsfx26tvf3a5"]
+
+[ext_resource type="Shader" path="res://scripts/color_change.gdshader" id="1_c0c58"]
+[ext_resource type="Texture2D" uid="uid://chkryot0q08kj" path="res://assets/sprites/moca_street01.png" id="2_otgo7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k8x5g"]
+shader = ExtResource("1_c0c58")
+shader_parameter/pixel_count = Vector2(256, 256)
+shader_parameter/darkness_factor = 0.595
+shader_parameter/saturation_factor = 0.618
+shader_parameter/hue_factor = 0.154
+
+[node name="tree01_01" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_k8x5g")
+position = Vector2(0.5, -1)
+texture = ExtResource("2_otgo7")
+offset = Vector2(0, -26.5)
+region_enabled = true
+region_rect = Rect2(277, 140, 93, 63)

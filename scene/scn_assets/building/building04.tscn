@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://de0e7h7avdlqh"]
+
+[ext_resource type="Texture2D" uid="uid://chkryot0q08kj" path="res://assets/sprites/moca_street01.png" id="1_i0hd4"]
+
+[node name="building04_01" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(37, -21.5)
+texture = ExtResource("1_i0hd4")
+region_enabled = true
+region_rect = Rect2(17, 228, 76, 43)
