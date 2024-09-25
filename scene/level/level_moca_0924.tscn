@@ -1,6 +1,5 @@
 [gd_scene load_steps=23 format=3 uid="uid://cdbbst1mjaqfb"]
 
-[ext_resource type="PackedScene" uid="uid://hxtrcq6dknbp" path="res://scene/characters/char_dm.tscn" id="1_q6yf3"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_fy2dc"]
 [ext_resource type="PackedScene" uid="uid://bsqe454na8rxc" path="res://scene/scn_assets/giant_robot_3d.tscn" id="4_xgbhx"]
 [ext_resource type="PackedScene" uid="uid://bevivr8hqkll2" path="res://scene/scn_assets/water.tscn" id="5_7tbgp"]
@@ -12,9 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://b56t3o558a21e" path="res://scene/scn_assets/building/building05.tscn" id="8_h4lfv"]
 [ext_resource type="PackedScene" uid="uid://de0e7h7avdlqh" path="res://scene/scn_assets/building/building04.tscn" id="8_ud0r7"]
 [ext_resource type="PackedScene" uid="uid://ddqcc1tlxwiqi" path="res://scene/scn_assets/building/tree02.tscn" id="10_nad1s"]
-[ext_resource type="Script" path="res://scripts/char_spawner/moca_character2d.gd" id="12_4xn3q"]
+[ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="12_4xn3q"]
 [ext_resource type="PackedScene" uid="uid://bgsfx26tvf3a5" path="res://scene/scn_assets/building/tree03_BG.tscn" id="13_jlg7n"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="13_visxw"]
+[ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="15_vt7ue"]
 
 [sub_resource type="Gradient" id="Gradient_wm6v1"]
 offsets = PackedFloat32Array(0, 0.561562)
@@ -56,9 +56,8 @@ alpha_curve = SubResource("CurveTexture_jy3s6")
 
 [node name="level_moca_0924" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_q6yf3")]
-z_index = 9
-position = Vector2(-318, -13)
+[node name="character_new_tmpl" parent="." instance=ExtResource("15_vt7ue")]
+position = Vector2(-514, -55)
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_fy2dc")]
 texture_filter = 2
@@ -67,21 +66,21 @@ offset = Vector2(0, -40)
 zoom = Vector2(3, 3)
 limit_bottom = 1080
 limit_smoothed = true
-player = NodePath("../Player")
+player = NodePath("../character_new_tmpl")
 
 [node name="light" type="Node" parent="."]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="light"]
-color = Color(0.154876, 0.154876, 0.154876, 1)
-energy = 0.0
+color = Color(0.103492, 0.0939834, 0.0909312, 1)
 blend_mode = 1
 range_layer_min = -90
 range_layer_max = 100
 
 [node name="PointLight2D" type="PointLight2D" parent="light"]
-visible = false
-position = Vector2(-411, -9)
-color = Color(0.67056, 0.22711, 0.229959, 1)
+position = Vector2(-410, -12)
+scale = Vector2(2, 2)
+color = Color(0.861796, 0.738065, 0.393372, 1)
+energy = 0.3
 range_z_min = -10
 range_z_max = 10
 range_layer_min = -10

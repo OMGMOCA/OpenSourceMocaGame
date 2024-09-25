@@ -27,6 +27,7 @@ func get_jump(delta: float) -> void:
 func character_move_control(delta: float) -> void:
 	#重力控制
 	if not is_on_floor():
+		#print("velocity: ",velocity)
 		velocity += get_gravity() * delta
 	var direction : float = 0
 	

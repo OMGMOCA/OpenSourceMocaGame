@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://ckkmcus1rh2og"]
 
-[ext_resource type="Script" path="res://scripts/char_spawner/moca_character2d.gd" id="2_vli4a"]
+[ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="2_vli4a"]
 [ext_resource type="PackedScene" uid="uid://b0w1nn1k5u0jm" path="res://scene/tilemap/tilemap_tmpl.tscn" id="3_0wajj"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="4_ww1x8"]
 [ext_resource type="PackedScene" uid="uid://hxtrcq6dknbp" path="res://scene/characters/char_dm.tscn" id="5_518qv"]
@@ -128,7 +128,7 @@ range_layer_max = 10
 texture = SubResource("GradientTexture2D_dsdkh")
 
 [node name="PointLight2D2" type="PointLight2D" parent="light"]
-position = Vector2(-107, -46)
+position = Vector2(-85, -71)
 scale = Vector2(3, 3)
 color = Color(0.493545, 0.493546, 0.493546, 1)
 energy = 2.0
