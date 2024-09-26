@@ -20,23 +20,17 @@ var animation_tree : AnimationTree = null
 var is_dead : bool = false
 var direction : float = 0
 
+var sound_jump : AudioStreamPlayer2D = null
 
 func _ready() -> void:
 	sprite_2d = find_child("Sprite2D")
 	sprite_2d.flip_h = flip
 	animation_tree = find_child("AnimationTree")
+	sound_jump = find_child("AudioStreamPlayer2D")
 	
 
 func _physics_process(delta: float) -> void:
 
-	get_move_input(Input.get_axis("move_left", "move_right"))
-	if Input.is_action_just_pressed("jump"):
-		get_jump_input(true)
-	if Input.is_action_just_released("jump"):
-		get_jump_input(false)
-	
-
-	
 	character_move_control(delta)
 	move_and_slide()
 	
@@ -52,12 +46,8 @@ func character_move_control(delta: float) -> void:
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-			
 
 		animation_tree.set("parameters/walk/blend_position",direction)
-		
-		
-
 		get_jump(delta)
 		character_flip(direction)
 	else:
@@ -89,6 +79,7 @@ func get_jump(delta : float) -> void:
 			jump = false
 		elif is_on_floor():
 			jump_execute = true
+			sound_jump.play()
 			velocity.y = jump_inital_speed
 			jump_force_time = 0
 
