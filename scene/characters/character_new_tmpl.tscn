@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://bbt512b3oqqht"]
 
 [ext_resource type="Script" path="res://scripts/character2d/moca_player2d.gd" id="1_quowp"]
-[ext_resource type="Texture2D" uid="uid://dne7rem2l1r6r" path="res://assets/sprites/characters/moca_char.png" id="2_w2hn8"]
+[ext_resource type="Texture2D" uid="uid://cyaq2fp4s380d" path="res://assets/sprites/characters/moca_cc.png" id="2_5wdt8"]
 [ext_resource type="AudioStream" uid="uid://87fyp0bgi5jg" path="res://assets/sounds/jump.wav" id="3_l55qa"]
 [ext_resource type="AnimationNodeBlendSpace1D" uid="uid://jlati5ecjedo" path="res://scripts/character2d/char_move_anima_tree.tres" id="3_nopgl"]
 
@@ -171,12 +171,12 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-65, -129)
 
 [node name="character_new_tmpl" type="CharacterBody2D"]
-z_index = 5
+z_index = 7
 script = ExtResource("1_quowp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -10)
-texture = ExtResource("2_w2hn8")
+texture = ExtResource("2_5wdt8")
 hframes = 10
 vframes = 10
 
