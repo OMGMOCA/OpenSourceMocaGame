@@ -72,28 +72,25 @@ func get_jump_input(input : bool) -> void:
 		jump = false
 	
 func get_jump(delta : float) -> void:
-	
-	if not jump_execute:
-		jump_wait_time += delta
-		if jump_wait_time >= max_jump_wait_time:
-			jump = false
-		elif is_on_floor():
-			jump_execute = true
-			sound_jump.play()
-			velocity.y = jump_inital_speed
-			jump_force_time = 0
-
 	if jump and jump_execute:
-		jump_force_time += delta
-		if jump_force_time >= max_jump_force_time:
+		if jump_force_time >= max_jump_force_time or is_on_floor():
 			jump = false
 			jump_execute = false
 			jump_force_time = max_jump_force_time
 		var jump_force = lerp(jump_max_force, 0.0, jump_force_time / max_jump_force_time)
 		velocity.y += jump_force
-	elif not jump:
-		jump_execute = jump
-
+	elif jump and not jump_execute:
+		if jump_wait_time >= max_jump_wait_time:
+			jump = false
+			jump_execute = false
+		elif is_on_floor():
+			jump_execute = true
+			sound_jump.play()
+			velocity.y = jump_inital_speed
+			jump_force_time = 0
+	jump_force_time += delta	
+	jump_wait_time += delta
+	jump_execute = jump
 
 		
 
