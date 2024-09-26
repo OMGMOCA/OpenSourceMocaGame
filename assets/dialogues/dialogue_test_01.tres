@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="DialogueGroup" load_steps=11 format=3 uid="uid://wndamm6cvciv"]
+
+[ext_resource type="Script" path="res://scripts/Asker/dialogue.gd" id="1_n28q2"]
+[ext_resource type="Texture2D" uid="uid://cbrxeq6uf5wbs" path="res://assets/sprites/icon/moca_cc_ind.png" id="2_180ln"]
+[ext_resource type="Script" path="res://scripts/Asker/dialogue_group.gd" id="2_xco0t"]
+[ext_resource type="Texture2D" uid="uid://d1rq8lw2flq8j" path="res://assets/sprites/icon/moca_dm_ind.png" id="3_bbv67"]
+
+[sub_resource type="Resource" id="Resource_5f8ww"]
+script = ExtResource("1_n28q2")
+character_name = "cc"
+content = "嗨，DD，好久不见！最近怎么样？"
+char_texture = ExtResource("2_180ln")
+show_on_left = true
+
+[sub_resource type="Resource" id="Resource_ftmf1"]
+script = ExtResource("1_n28q2")
+character_name = "dd"
+content = "嗨，CC！我很好，谢谢。你呢？"
+char_texture = ExtResource("3_bbv67")
+show_on_left = false
+
+[sub_resource type="Resource" id="Resource_nteje"]
+script = ExtResource("1_n28q2")
+character_name = "cc"
+content = "我也不错。听说你最近在学画画，进展如何？"
+char_texture = ExtResource("2_180ln")
+show_on_left = true
+
+[sub_resource type="Resource" id="Resource_lckl0"]
+script = ExtResource("1_n28q2")
+character_name = "dd"
+content = "是啊，我刚开始学，还在摸索中。你最近在忙什么？"
+char_texture = ExtResource("3_bbv67")
+show_on_left = false
+
+[sub_resource type="Resource" id="Resource_fdi3h"]
+script = ExtResource("1_n28q2")
+character_name = "cc"
+content = "我最近在开发一个新的游戏项目，挺有挑战性的。"
+char_texture = ExtResource("2_180ln")
+show_on_left = true
+
+[sub_resource type="Resource" id="Resource_bdycj"]
+script = ExtResource("1_n28q2")
+character_name = "dd"
+content = "哇，听起来很有趣！有机会一定要让我试试。"
+char_texture = ExtResource("3_bbv67")
+show_on_left = false
+
+[resource]
+script = ExtResource("2_xco0t")
+dialogue_list = Array[ExtResource("1_n28q2")]([SubResource("Resource_5f8ww"), SubResource("Resource_ftmf1"), SubResource("Resource_nteje"), SubResource("Resource_lckl0"), SubResource("Resource_fdi3h"), SubResource("Resource_bdycj")])

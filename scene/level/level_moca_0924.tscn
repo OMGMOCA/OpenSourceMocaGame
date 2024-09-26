@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cdbbst1mjaqfb"]
+[gd_scene load_steps=26 format=3 uid="uid://cdbbst1mjaqfb"]
 
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_fy2dc"]
 [ext_resource type="PackedScene" uid="uid://bsqe454na8rxc" path="res://scene/scn_assets/giant_robot_3d.tscn" id="4_xgbhx"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bgsfx26tvf3a5" path="res://scene/scn_assets/building/tree03_BG.tscn" id="13_jlg7n"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="13_visxw"]
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="15_vt7ue"]
+[ext_resource type="PackedScene" uid="uid://347iqbn3po73" path="res://scene/scn_dialogues/asker_test.tscn" id="18_nonaq"]
 
 [sub_resource type="Gradient" id="Gradient_wm6v1"]
 offsets = PackedFloat32Array(0, 0.561562)
@@ -224,3 +225,7 @@ begin = false
 
 [node name="building04_01" parent="." instance=ExtResource("8_ud0r7")]
 position = Vector2(-33, -60)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("18_nonaq")]
