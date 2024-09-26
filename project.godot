@@ -20,6 +20,14 @@ config/icon="res://icon.svg"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
 
+[file_customization]
+
+folder_colors={
+"res://assets/": "blue",
+"res://scene/": "green",
+"res://scripts/": "orange"
+}
+
 [input]
 
 jump={
