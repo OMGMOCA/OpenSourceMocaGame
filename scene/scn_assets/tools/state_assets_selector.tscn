@@ -6,7 +6,13 @@
 [node name="state_assets_selector" type="Node2D"]
 script = ExtResource("1_sdi51")
 texture = ExtResource("2_tl8rg")
+hframes = 6
+vframes = 4
+sprite_index = 9
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -10)
 texture = ExtResource("2_tl8rg")
+hframes = 6
+vframes = 4
+frame = 9

@@ -1,6 +1,8 @@
 @tool
 extends Node2D
+class_name StateAssetsSelector
 
+@export_group("Sprite")
 @export var texture : Texture2D = null:
 	set(value):
 		texture = value
@@ -31,6 +33,7 @@ extends Node2D
 		sprite_index = value
 		if Engine.is_editor_hint():
 			var sprite = find_child("Sprite2D")
+			if not sprite: return
 			var range = sprite.get("hframes") * sprite.get("vframes")
 			if sprite_index >= range:
 				sprite_index = 0
@@ -45,6 +48,7 @@ extends Node2D
 		
 func set_sprite() -> void:
 	var sprite = find_child("Sprite2D")
+	if not sprite: return
 	sprite.set("texture",texture)
 	sprite.set("hframes",hframes)
 	sprite.set("vframes",vframes)

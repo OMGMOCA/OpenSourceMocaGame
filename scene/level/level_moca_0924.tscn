@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cdbbst1mjaqfb"]
+[gd_scene load_steps=25 format=3 uid="uid://cdbbst1mjaqfb"]
 
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_fy2dc"]
 [ext_resource type="PackedScene" uid="uid://bsqe454na8rxc" path="res://scene/scn_assets/giant_robot_3d.tscn" id="4_xgbhx"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="11_ib2eu"]
 [ext_resource type="Texture2D" uid="uid://bjj5o62kugf2l" path="res://assets/sprites/platforms.png" id="12_1j4x7"]
 [ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="12_4xn3q"]
-[ext_resource type="Texture2D" uid="uid://fh5j0ilpvxbk" path="res://assets/sprites/fruit.png" id="12_5l8qk"]
 [ext_resource type="PackedScene" uid="uid://bgsfx26tvf3a5" path="res://scene/scn_assets/building/tree03_BG.tscn" id="13_jlg7n"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="13_visxw"]
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="15_vt7ue"]
@@ -134,16 +133,16 @@ z_index = 2
 position = Vector2(-148, 5)
 
 [node name="state_assets_selector" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
-position = Vector2(-607, -66)
-texture = ExtResource("12_5l8qk")
-hframes = 4
-vframes = 4
-sprite_index = 4
+position = Vector2(-571, -65)
+hframes = 5
+vframes = 5
+sprite_index = 10
 
 [node name="state_assets_selector2" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
-position = Vector2(-553, -67)
+position = Vector2(-490, -65)
 texture = ExtResource("12_1j4x7")
-vframes = 4
+hframes = 1
+sprite_index = 1
 
 [node name="tilemap" type="Node" parent="."]
 

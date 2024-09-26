@@ -12,7 +12,7 @@ noise = SubResource("FastNoiseLite_87co4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hd8i1"]
 shader = ExtResource("1_ult6d")
-shader_parameter/water_color = Color(0, 0.401055, 0.944162, 1)
+shader_parameter/water_color = Color(0.356863, 0.301961, 1, 1)
 shader_parameter/wave_noise = SubResource("NoiseTexture2D_vphx7")
 
 [node name="water" type="Node2D"]
