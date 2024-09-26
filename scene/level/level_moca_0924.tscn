@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cdbbst1mjaqfb"]
+[gd_scene load_steps=30 format=3 uid="uid://cdbbst1mjaqfb"]
 
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_fy2dc"]
 [ext_resource type="PackedScene" uid="uid://bsqe454na8rxc" path="res://scene/scn_assets/giant_robot_3d.tscn" id="4_xgbhx"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="11_ib2eu"]
 [ext_resource type="Texture2D" uid="uid://bjj5o62kugf2l" path="res://assets/sprites/platforms.png" id="12_1j4x7"]
 [ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="12_4xn3q"]
+[ext_resource type="PackedScene" uid="uid://nste2y5r7d6r" path="res://scene/scn_assets/tools/movable_platform.tscn" id="13_0b4xs"]
 [ext_resource type="PackedScene" uid="uid://bgsfx26tvf3a5" path="res://scene/scn_assets/building/tree03_BG.tscn" id="13_jlg7n"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="13_visxw"]
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="15_vt7ue"]
@@ -28,6 +29,45 @@ gradient = SubResource("Gradient_wm6v1")
 fill = 1
 fill_from = Vector2(0.504274, 0.487179)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_nc3h5"]
+resource_name = "platform_move"
+length = 5.0
+loop_mode = 2
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-433, -39), Vector2(-433, -39), Vector2(-300, -39), Vector2(-300, -39)]
+}
+
+[sub_resource type="Animation" id="Animation_ky6kl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-433, -39)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a0o0o"]
+_data = {
+"RESET": SubResource("Animation_ky6kl"),
+"platform_move": SubResource("Animation_nc3h5")
+}
 
 [sub_resource type="Gradient" id="Gradient_k2w0d"]
 offsets = PackedFloat32Array(0.737237, 0.995495)
@@ -145,6 +185,19 @@ texture = ExtResource("12_1j4x7")
 hframes = 1
 sprite_index = 1
 
+[node name="building04_02" parent="scene/sen_layer01" instance=ExtResource("8_ud0r7")]
+position = Vector2(-33, -60)
+
+[node name="movable_platform" parent="scene/sen_layer01" instance=ExtResource("13_0b4xs")]
+z_index = 5
+position = Vector2(-433, -39)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scene/sen_layer01/movable_platform"]
+libraries = {
+"": SubResource("AnimationLibrary_a0o0o")
+}
+autoplay = "platform_move"
+
 [node name="tilemap" type="Node" parent="."]
 
 [node name="tilemap_bg2" parent="tilemap" instance=ExtResource("5_84fwe")]
@@ -223,9 +276,7 @@ speed = 100.0
 destroy_wait_time = 3.0
 begin = false
 
-[node name="building04_01" parent="." instance=ExtResource("8_ud0r7")]
-position = Vector2(-33, -60)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("18_nonaq")]
+visible = false
