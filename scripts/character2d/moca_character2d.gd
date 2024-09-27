@@ -21,20 +21,36 @@ var is_dead : bool = false
 var direction : float = 0
 
 var sound_jump : AudioStreamPlayer2D = null
+var sound_attack : AudioStreamPlayer2D = null
+
+var attack_input : bool = false
+var attack : bool = false
 
 func _ready() -> void:
 	sprite_2d = find_child("Sprite2D")
 	sprite_2d.flip_h = flip
 	animation_tree = find_child("AnimationTree")
-	sound_jump = find_child("AudioStreamPlayer2D")
+	sound_jump = find_child("Sound_jump")
+	sound_attack = find_child("Sound_attack")
 	
 
 func _physics_process(delta: float) -> void:
-
+	character_attack_control(delta)
 	character_move_control(delta)
 	move_and_slide()
 	
 
+func character_attack_control(delta: float) -> void:
+	animation_tree.animation_started.connect(on_anima_started)
+	animation_tree.animation_finished.connect(on_anima_finished)
+
+func on_anima_started(anima_name : StringName) -> void:
+	if anima_name == "attack01":
+		sound_attack.play()
+		
+func on_anima_finished(anima_name : StringName) -> void:
+	if anima_name == "attack01":
+		attack_input = false
 	
 func character_move_control(delta: float) -> void:
 	#重力控制
@@ -61,16 +77,6 @@ func character_flip(dir : float) -> void:
 		
 	sprite_2d.flip_h = flip
 	
-func get_move_input(dir : float) -> void:
-	direction = dir
-
-func get_jump_input(input : bool) -> void:
-	if input:
-		jump = true
-		jump_wait_time = 0
-	else:
-		jump = false
-	
 func get_jump(delta : float) -> void:
 	if jump and jump_execute:
 		if jump_force_time >= max_jump_force_time or is_on_floor():
@@ -92,7 +98,20 @@ func get_jump(delta : float) -> void:
 	jump_wait_time += delta
 	jump_execute = jump
 
-		
+
+func get_move_input(dir : float) -> void:
+	direction = dir
+
+func get_jump_input(input : bool) -> void:
+	if input:
+		jump = true
+		jump_wait_time = 0
+	else:
+		jump = false
+
+func get_attack_input(input : bool) -> void:
+	if input:
+		attack_input = true
 
 
 

@@ -1,21 +1,15 @@
-[gd_scene load_steps=30 format=3 uid="uid://cdbbst1mjaqfb"]
+[gd_scene load_steps=24 format=3 uid="uid://cdbbst1mjaqfb"]
 
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_fy2dc"]
 [ext_resource type="PackedScene" uid="uid://bsqe454na8rxc" path="res://scene/scn_assets/giant_robot_3d.tscn" id="4_xgbhx"]
 [ext_resource type="PackedScene" uid="uid://bevivr8hqkll2" path="res://scene/scn_assets/water.tscn" id="5_7tbgp"]
 [ext_resource type="PackedScene" uid="uid://bkx6d30u03giq" path="res://scene/tilemap/tilemap_moca_0924.tscn" id="5_84fwe"]
-[ext_resource type="PackedScene" uid="uid://d2s6u7dxvadts" path="res://scene/scn_assets/building/building01.tscn" id="5_v08qn"]
-[ext_resource type="PackedScene" uid="uid://bx5015vg7oqu2" path="res://scene/scn_assets/building/building02.tscn" id="6_glumf"]
 [ext_resource type="PackedScene" uid="uid://bdes4rwa6n7kc" path="res://scene/scn_assets/building/tree01.tscn" id="6_uda2n"]
-[ext_resource type="PackedScene" uid="uid://cqxjg0rx7vdab" path="res://scene/scn_assets/building/building03.tscn" id="7_sr3nf"]
-[ext_resource type="PackedScene" uid="uid://b56t3o558a21e" path="res://scene/scn_assets/building/building05.tscn" id="8_h4lfv"]
-[ext_resource type="PackedScene" uid="uid://de0e7h7avdlqh" path="res://scene/scn_assets/building/building04.tscn" id="8_ud0r7"]
-[ext_resource type="PackedScene" uid="uid://ddqcc1tlxwiqi" path="res://scene/scn_assets/building/tree02.tscn" id="10_nad1s"]
+[ext_resource type="Texture2D" uid="uid://gsgp66bl11gf" path="res://assets/sprites/building/buildings_bg_1024_8.png" id="9_igbdj"]
+[ext_resource type="Texture2D" uid="uid://vcyptpgie32e" path="res://assets/sprites/building/clouds_512_4.png" id="9_ywpat"]
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="11_ib2eu"]
-[ext_resource type="Texture2D" uid="uid://bjj5o62kugf2l" path="res://assets/sprites/platforms.png" id="12_1j4x7"]
 [ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="12_4xn3q"]
-[ext_resource type="PackedScene" uid="uid://nste2y5r7d6r" path="res://scene/scn_assets/tools/movable_platform.tscn" id="13_0b4xs"]
-[ext_resource type="PackedScene" uid="uid://bgsfx26tvf3a5" path="res://scene/scn_assets/building/tree03_BG.tscn" id="13_jlg7n"]
+[ext_resource type="PackedScene" uid="uid://nste2y5r7d6r" path="res://scene/scn_assets/platform/movable_platform.tscn" id="13_0b4xs"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="13_visxw"]
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="15_vt7ue"]
 [ext_resource type="PackedScene" uid="uid://347iqbn3po73" path="res://scene/scn_dialogues/asker_test.tscn" id="18_nonaq"]
@@ -29,6 +23,21 @@ gradient = SubResource("Gradient_wm6v1")
 fill = 1
 fill_from = Vector2(0.504274, 0.487179)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_ky6kl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-499, -83)]
+}
 
 [sub_resource type="Animation" id="Animation_nc3h5"]
 resource_name = "platform_move"
@@ -45,22 +54,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 4, 5),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-433, -39), Vector2(-433, -39), Vector2(-300, -39), Vector2(-300, -39)]
-}
-
-[sub_resource type="Animation" id="Animation_ky6kl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-433, -39)]
+"values": [Vector2(-499, -83), Vector2(-499, -83), Vector2(-304, -83), Vector2(-304, -83)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a0o0o"]
@@ -139,60 +133,49 @@ scale = Vector2(1.4, 0.7)
 [node name="sen_layer01" type="Node2D" parent="scene"]
 z_index = -10
 
-[node name="building01_01" parent="scene/sen_layer01" instance=ExtResource("5_v08qn")]
-position = Vector2(-418, 4)
-
-[node name="building02_01" parent="scene/sen_layer01" instance=ExtResource("6_glumf")]
-position = Vector2(-357, 4)
+[node name="buildings1" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-421, 4)
+sprite_index = 5
 
 [node name="tree01_01" parent="scene/sen_layer01" instance=ExtResource("6_uda2n")]
-z_index = 1
-position = Vector2(-309, 11)
+position = Vector2(-374, 7)
 
-[node name="tree01_02" parent="scene/sen_layer01" instance=ExtResource("6_uda2n")]
-z_index = -1
-position = Vector2(-462, 9)
+[node name="buildings2" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-336, 4)
 
-[node name="tree01_03" parent="scene/sen_layer01" instance=ExtResource("6_uda2n")]
-z_index = -1
-position = Vector2(-410, -33)
+[node name="buildings" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-304, 4)
+sprite_index = 11
 
-[node name="building03_01" parent="scene/sen_layer01" instance=ExtResource("7_sr3nf")]
-z_index = -1
-position = Vector2(-399, -37)
+[node name="buildings3" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-273, 4)
+sprite_index = 11
 
-[node name="building04_01" parent="scene/sen_layer01" instance=ExtResource("8_ud0r7")]
-z_index = 2
-position = Vector2(-228, 4)
+[node name="buildings4" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-242, 4)
+sprite_index = 11
 
-[node name="building05_01" parent="scene/sen_layer01" instance=ExtResource("8_h4lfv")]
-z_index = 1
-position = Vector2(-296, 4)
+[node name="buildings5" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-203, 4)
+sprite_index = 3
 
-[node name="tree01_04" parent="scene/sen_layer01" instance=ExtResource("10_nad1s")]
-z_index = 2
-position = Vector2(-148, 5)
+[node name="buildings6" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-210, -31)
+sprite_index = 8
 
-[node name="state_assets_selector" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
-position = Vector2(-571, -65)
-hframes = 5
-vframes = 5
-sprite_index = 10
+[node name="buildings7" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-269, 4)
+sprite_index = 12
 
-[node name="state_assets_selector2" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
-position = Vector2(-490, -65)
-texture = ExtResource("12_1j4x7")
-hframes = 1
-sprite_index = 1
+[node name="buildings8" parent="scene/sen_layer01" instance=ExtResource("11_ib2eu")]
+position = Vector2(-114, 4)
+sprite_index = 4
 
-[node name="building04_02" parent="scene/sen_layer01" instance=ExtResource("8_ud0r7")]
-position = Vector2(-33, -60)
-
-[node name="movable_platform" parent="scene/sen_layer01" instance=ExtResource("13_0b4xs")]
+[node name="movable_platform" parent="scene" instance=ExtResource("13_0b4xs")]
 z_index = 5
-position = Vector2(-433, -39)
+position = Vector2(-499, -83)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="scene/sen_layer01/movable_platform"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scene/movable_platform"]
 libraries = {
 "": SubResource("AnimationLibrary_a0o0o")
 }
@@ -216,37 +199,149 @@ position = Vector2(185, -40)
 [node name="bg02" type="ParallaxLayer" parent="background/Parallax"]
 motion_scale = Vector2(0.5, 0.8)
 
-[node name="tree01_01" parent="background/Parallax/bg02" instance=ExtResource("13_jlg7n")]
-position = Vector2(-164, 34)
-scale = Vector2(2, 2)
+[node name="buildings9" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-345, -5)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
 
-[node name="tree01_02" parent="background/Parallax/bg02" instance=ExtResource("13_jlg7n")]
-position = Vector2(-91, 61)
-scale = Vector2(2, 2)
+[node name="buildings10" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-189, -21)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
 
-[node name="tree01_03" parent="background/Parallax/bg02" instance=ExtResource("13_jlg7n")]
-position = Vector2(10, 32)
-scale = Vector2(2, 2)
+[node name="buildings11" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-74, -3)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
 
-[node name="tree01_04" parent="background/Parallax/bg02" instance=ExtResource("13_jlg7n")]
-position = Vector2(73, 64)
-scale = Vector2(2, 2)
+[node name="buildings12" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-483, -19)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
 
-[node name="tree01_05" parent="background/Parallax/bg02" instance=ExtResource("13_jlg7n")]
-position = Vector2(-148, 86)
-scale = Vector2(2, 2)
+[node name="buildings13" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-568, 6)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
 
-[node name="tree01_06" parent="background/Parallax/bg02" instance=ExtResource("13_jlg7n")]
-position = Vector2(-75, 113)
-scale = Vector2(2, 2)
+[node name="buildings14" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-453, 11)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
 
-[node name="tree01_07" parent="background/Parallax/bg02" instance=ExtResource("13_jlg7n")]
-position = Vector2(26, 84)
-scale = Vector2(2, 2)
+[node name="buildings15" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-210, 9)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
 
-[node name="tree01_08" parent="background/Parallax/bg02" instance=ExtResource("13_jlg7n")]
-position = Vector2(89, 116)
-scale = Vector2(2, 2)
+[node name="buildings16" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(58, -22)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings17" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(83, 10)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings18" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(223, 11)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings19" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(365, 34)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings20" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-675, 30)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings21" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-296, 25)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings22" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-140, 9)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings23" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-25, 27)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings24" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-434, 11)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings25" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-519, 36)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings26" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-404, 41)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings27" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-161, 39)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings28" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(107, 8)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings29" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(132, 40)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings30" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(272, 41)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings31" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(414, 64)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
+
+[node name="buildings32" parent="background/Parallax/bg02" instance=ExtResource("11_ib2eu")]
+position = Vector2(-626, 60)
+texture = ExtResource("9_ywpat")
+hframes = 2
+vframes = 2
 
 [node name="background" type="ParallaxLayer" parent="background/Parallax"]
 
@@ -255,6 +350,29 @@ z_index = -100
 position = Vector2(0, -190)
 scale = Vector2(40, 7)
 texture = SubResource("GradientTexture2D_bka6r")
+
+[node name="bg03" type="ParallaxLayer" parent="background/Parallax"]
+motion_scale = Vector2(0.9, 1)
+
+[node name="tree01_02" parent="background/Parallax/bg03" instance=ExtResource("6_uda2n")]
+position = Vector2(-299, 11)
+
+[node name="buildings_bg3" parent="background/Parallax/bg03" instance=ExtResource("11_ib2eu")]
+position = Vector2(-251, 4)
+texture = ExtResource("9_igbdj")
+sprite_index = 3
+
+[node name="buildings_bg" parent="background/Parallax/bg03" instance=ExtResource("11_ib2eu")]
+position = Vector2(-219, 4)
+texture = ExtResource("9_igbdj")
+
+[node name="buildings_bg2" parent="background/Parallax/bg03" instance=ExtResource("11_ib2eu")]
+position = Vector2(-191, 4)
+texture = ExtResource("9_igbdj")
+sprite_index = 2
+
+[node name="tree01_03" parent="background/Parallax/bg03" instance=ExtResource("6_uda2n")]
+position = Vector2(-128, 11)
 
 [node name="Particles" type="Node" parent="."]
 

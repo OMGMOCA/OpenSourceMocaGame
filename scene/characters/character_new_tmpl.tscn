@@ -1,9 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bbt512b3oqqht"]
+[gd_scene load_steps=33 format=3 uid="uid://bbt512b3oqqht"]
 
 [ext_resource type="Script" path="res://scripts/character2d/moca_player2d.gd" id="1_quowp"]
 [ext_resource type="Texture2D" uid="uid://cyaq2fp4s380d" path="res://assets/sprites/characters/moca_cc.png" id="2_5wdt8"]
 [ext_resource type="AudioStream" uid="uid://87fyp0bgi5jg" path="res://assets/sounds/jump.wav" id="3_l55qa"]
-[ext_resource type="AnimationNodeBlendSpace1D" uid="uid://jlati5ecjedo" path="res://scripts/character2d/char_move_anima_tree.tres" id="3_nopgl"]
+[ext_resource type="AudioStream" uid="uid://bni52808fts02" path="res://assets/sounds/slash-21834.mp3" id="4_sx2ea"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idgee"]
 radius = 5.0
@@ -110,9 +110,27 @@ tracks/0/keys = {
 "values": [10, 11, 12, 13, 14, 15, 16, 17]
 }
 
+[sub_resource type="Animation" id="Animation_26fle"]
+resource_name = "attack01"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [22, 23, 24, 22]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t6u15"]
 _data = {
 "RESET": SubResource("Animation_lwhsx"),
+"attack01": SubResource("Animation_26fle"),
 "death": SubResource("Animation_5cu2c"),
 "fall": SubResource("Animation_ox81s"),
 "idle": SubResource("Animation_e2icu"),
@@ -120,55 +138,88 @@ _data = {
 "walk": SubResource("Animation_vp7gv")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v1idl"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c4sl4"]
+animation = &"attack01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ddhg"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ost5m"]
+state_machine_type = 1
+states/attack01/node = SubResource("AnimationNodeAnimation_c4sl4")
+states/attack01/position = Vector2(411, 100)
+transitions = ["Start", "attack01", SubResource("AnimationNodeStateMachineTransition_2ddhg")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e2gi7"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j8xps"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjvlb"]
 animation = &"jump"
-use_custom_timeline = true
-timeline_length = 1.0
-stretch_time_scale = true
-start_offset = 0.0
-loop_mode = 0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a6tec"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a7uwt"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2grlu"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnxnr"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_447dm"]
 advance_mode = 2
-advance_expression = "abs(direction) < 0.1 and is_on_floor()"
+advance_expression = "not is_on_floor()"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rn8tv"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o1rj1"]
+advance_mode = 2
+advance_expression = "is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1pja0"]
 advance_mode = 2
 advance_expression = "abs(direction) > 0.1 and is_on_floor()"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_infen"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i6bi1"]
 advance_mode = 2
-advance_expression = "is_on_floor()"
+advance_expression = "abs(direction) < 0.1 and is_on_floor()"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bm8tl"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gcj2a"]
 advance_mode = 2
 advance_expression = "not is_on_floor()"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g0yhc"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_plj6m"]
 advance_mode = 2
 advance_expression = "is_on_floor()"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j5c8p"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_v4htb"]
+state_machine_type = 1
+states/idle/node = SubResource("AnimationNodeAnimation_e2gi7")
+states/idle/position = Vector2(380, 100)
+states/jump/node = SubResource("AnimationNodeAnimation_bjvlb")
+states/jump/position = Vector2(613, 100)
+states/walk/node = SubResource("AnimationNodeAnimation_a7uwt")
+states/walk/position = Vector2(380, 252)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2grlu"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_447dm"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_o1rj1"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_1pja0"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_i6bi1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_gcj2a"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_plj6m")]
+graph_offset = Vector2(-174, 5)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_narjk"]
 advance_mode = 2
-advance_expression = "not is_on_floor()"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_48tyf"]
+advance_mode = 2
+advance_expression = "attack_input"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_if3pt"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fhm5t"]
 states/End/position = Vector2(1260, 129)
-states/Start/position = Vector2(341, -9)
-states/idle/node = SubResource("AnimationNodeAnimation_v1idl")
-states/idle/position = Vector2(468, -9)
-states/jump/node = SubResource("AnimationNodeAnimation_j8xps")
-states/jump/position = Vector2(742, -9)
-states/walk/node = ExtResource("3_nopgl")
-states/walk/position = Vector2(468, 195)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_a6tec"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_gnxnr"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_rn8tv"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_infen"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_bm8tl"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_g0yhc"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_j5c8p")]
-graph_offset = Vector2(-65, -129)
+states/Start/position = Vector2(204, 93)
+states/attack/node = SubResource("AnimationNodeStateMachine_ost5m")
+states/attack/position = Vector2(370, 201)
+states/base/node = SubResource("AnimationNodeStateMachine_v4htb")
+states/base/position = Vector2(370, 93)
+transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_narjk"), "base", "attack", SubResource("AnimationNodeStateMachineTransition_48tyf"), "attack", "base", SubResource("AnimationNodeStateMachineTransition_if3pt")]
+graph_offset = Vector2(-342, -26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1r4rb"]
+size = Vector2(13, 13)
 
 [node name="character_new_tmpl" type="CharacterBody2D"]
 z_index = 7
@@ -194,7 +245,16 @@ autoplay = "idle"
 tree_root = SubResource("AnimationNodeStateMachine_fhm5t")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/walk/blend_position = 0.0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Sound_jump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_l55qa")
+
+[node name="Sound_attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sx2ea")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(13, -8)
+shape = SubResource("RectangleShape2D_1r4rb")

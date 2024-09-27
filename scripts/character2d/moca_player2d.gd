@@ -13,6 +13,10 @@ func _physics_process(delta: float) -> void:
 		pass
 	if Input.is_action_just_released("interact"):
 		pass
-		
+	
+	if Input.is_action_just_pressed("attack1"):
+		get_attack_input(true)
+	if Input.is_action_just_released("attack1"):
+		get_attack_input(false)
 		
 	
