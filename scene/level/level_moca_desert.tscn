@@ -1,0 +1,260 @@
+[gd_scene load_steps=26 format=3 uid="uid://jtawkecj701l"]
+
+[ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="1_3oa68"]
+[ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_oxtv0"]
+[ext_resource type="PackedScene" uid="uid://diqlht5xiyibq" path="res://scene/scn_assets/building/tree01_desert.tscn" id="3_pdb61"]
+[ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="4_ojj8a"]
+[ext_resource type="PackedScene" uid="uid://bdes4rwa6n7kc" path="res://scene/scn_assets/building/tree01.tscn" id="5_6hold"]
+[ext_resource type="Texture2D" uid="uid://cr2asduy0e741" path="res://assets/sprites/Desert town/沙漠小镇建筑-1024.png" id="5_ijg46"]
+[ext_resource type="PackedScene" uid="uid://cmouo37qu64bw" path="res://scene/tilemap/tilemap_moca_desert.tscn" id="6_ach1s"]
+[ext_resource type="PackedScene" uid="uid://nste2y5r7d6r" path="res://scene/scn_assets/platform/movable_platform.tscn" id="6_s2qcc"]
+[ext_resource type="Texture2D" uid="uid://dvl6t6i86jnmn" path="res://assets/sprites/Desert town/sand Bg-L.png" id="8_j18nj"]
+[ext_resource type="Texture2D" uid="uid://vcyptpgie32e" path="res://assets/sprites/building/clouds_512_4.png" id="9_fn48g"]
+[ext_resource type="Texture2D" uid="uid://bwcef4gkl6np1" path="res://assets/sprites/Desert town/sand-Bg-M.png" id="9_vvaty"]
+[ext_resource type="Texture2D" uid="uid://gsgp66bl11gf" path="res://assets/sprites/building/buildings_bg_1024_8.png" id="10_08yg1"]
+[ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="11_2x5l1"]
+[ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="12_u2146"]
+[ext_resource type="PackedScene" uid="uid://347iqbn3po73" path="res://scene/scn_dialogues/asker_test.tscn" id="13_lpycx"]
+
+[sub_resource type="Gradient" id="Gradient_wm6v1"]
+offsets = PackedFloat32Array(0, 0.561562)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dsdkh"]
+gradient = SubResource("Gradient_wm6v1")
+fill = 1
+fill_from = Vector2(0.504274, 0.487179)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_ky6kl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-499, -83)]
+}
+
+[sub_resource type="Animation" id="Animation_nc3h5"]
+resource_name = "platform_move"
+length = 5.0
+loop_mode = 2
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-499, -83), Vector2(-499, -83), Vector2(-304, -83), Vector2(-304, -83)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a0o0o"]
+_data = {
+"RESET": SubResource("Animation_ky6kl"),
+"platform_move": SubResource("Animation_nc3h5")
+}
+
+[sub_resource type="Gradient" id="Gradient_k2w0d"]
+offsets = PackedFloat32Array(0.737237, 0.995495)
+colors = PackedColorArray(0.280704, 0.858665, 1, 1, 0.980211, 0.705353, 0.763552, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bka6r"]
+gradient = SubResource("Gradient_k2w0d")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Curve" id="Curve_qclxo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.202417, 0.595524), 2.3488, 2.3488, 0, 0, Vector2(0.824773, 0.560044), -2.936, -2.936, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jy3s6"]
+curve = SubResource("Curve_qclxo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f8ev2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 200, 1)
+spread = 20.0
+initial_velocity_min = 10.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 20, 0)
+scale_min = 0.5
+scale_max = 3.0
+color = Color(1, 0.717647, 0.937255, 1)
+alpha_curve = SubResource("CurveTexture_jy3s6")
+
+[node name="level_moca_0924" type="Node2D"]
+
+[node name="character_new_tmpl" parent="." instance=ExtResource("1_3oa68")]
+position = Vector2(-514, -55)
+
+[node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_oxtv0")]
+texture_filter = 2
+position = Vector2(48, -104)
+offset = Vector2(0, -40)
+zoom = Vector2(2, 2)
+limit_bottom = 1080
+limit_smoothed = true
+player = NodePath("../character_new_tmpl")
+
+[node name="light" type="Node" parent="."]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="light"]
+color = Color(0.103492, 0.0939834, 0.0909312, 1)
+blend_mode = 1
+range_layer_min = -90
+range_layer_max = 100
+
+[node name="PointLight2D" type="PointLight2D" parent="light"]
+position = Vector2(-410, -12)
+scale = Vector2(2, 2)
+color = Color(0.861796, 0.738065, 0.393372, 1)
+energy = 0.3
+range_z_min = -10
+range_z_max = 10
+range_layer_min = -10
+range_layer_max = 10
+texture = SubResource("GradientTexture2D_dsdkh")
+
+[node name="scene" type="Node" parent="."]
+
+[node name="sen_layer01" type="Node2D" parent="scene"]
+z_index = -10
+
+[node name="tree01_02" parent="scene/sen_layer01" instance=ExtResource("3_pdb61")]
+position = Vector2(-544, 5)
+
+[node name="buildings1" parent="scene/sen_layer01" instance=ExtResource("4_ojj8a")]
+position = Vector2(-460, 4)
+texture = ExtResource("5_ijg46")
+sprite_index = 2
+
+[node name="movable_platform" parent="scene" instance=ExtResource("6_s2qcc")]
+z_index = 5
+position = Vector2(-499, -83)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scene/movable_platform"]
+libraries = {
+"": SubResource("AnimationLibrary_a0o0o")
+}
+autoplay = "platform_move"
+
+[node name="tilemap" type="Node" parent="."]
+
+[node name="tilemap_bg" parent="tilemap" instance=ExtResource("6_ach1s")]
+z_index = 50
+position = Vector2(0, 145)
+
+[node name="background" type="Node" parent="."]
+
+[node name="Parallax" type="ParallaxBackground" parent="background"]
+
+[node name="bg0" type="ParallaxLayer" parent="background/Parallax"]
+motion_scale = Vector2(0.1, 0.8)
+
+[node name="clouds" parent="background/Parallax/bg0" instance=ExtResource("4_ojj8a")]
+position = Vector2(71, 141)
+texture = ExtResource("9_fn48g")
+hframes = 2
+vframes = 2
+
+[node name="clouds2" parent="background/Parallax/bg0" instance=ExtResource("4_ojj8a")]
+position = Vector2(437, 137)
+texture = ExtResource("9_fn48g")
+hframes = 2
+vframes = 2
+
+[node name="clouds3" parent="background/Parallax/bg0" instance=ExtResource("4_ojj8a")]
+position = Vector2(360, 98)
+texture = ExtResource("9_fn48g")
+hframes = 2
+vframes = 2
+sprite_index = 2
+
+[node name="bg01" type="ParallaxLayer" parent="background/Parallax"]
+motion_scale = Vector2(0.2, 0.8)
+
+[node name="sand" parent="background/Parallax/bg01" instance=ExtResource("4_ojj8a")]
+position = Vector2(105, 26)
+texture = ExtResource("8_j18nj")
+hframes = 1
+vframes = 1
+sprite_index = 0
+
+[node name="sand2" parent="background/Parallax/bg01" instance=ExtResource("4_ojj8a")]
+position = Vector2(458, 78)
+texture = ExtResource("8_j18nj")
+hframes = 1
+vframes = 1
+sprite_index = 0
+
+[node name="bg02" type="ParallaxLayer" parent="background/Parallax"]
+motion_scale = Vector2(0.3, 0.8)
+
+[node name="sand2" parent="background/Parallax/bg02" instance=ExtResource("4_ojj8a")]
+position = Vector2(-79, 50)
+texture = ExtResource("9_vvaty")
+hframes = 1
+vframes = 1
+sprite_index = 0
+
+[node name="sand3" parent="background/Parallax/bg02" instance=ExtResource("4_ojj8a")]
+position = Vector2(66, 70)
+texture = ExtResource("9_vvaty")
+hframes = 1
+vframes = 1
+sprite_index = 0
+
+[node name="background" type="ParallaxLayer" parent="background/Parallax"]
+
+[node name="GradientBackground" type="Sprite2D" parent="background/Parallax/background"]
+z_index = -100
+position = Vector2(0, -190)
+scale = Vector2(40, 7)
+texture = SubResource("GradientTexture2D_bka6r")
+
+[node name="bg03" type="ParallaxLayer" parent="background/Parallax"]
+motion_scale = Vector2(0.9, 1)
+
+[node name="tree01_02" parent="background/Parallax/bg03" instance=ExtResource("5_6hold")]
+position = Vector2(-299, 11)
+
+[node name="buildings_bg3" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
+position = Vector2(-251, 4)
+texture = ExtResource("10_08yg1")
+sprite_index = 3
+
+[node name="Particles" type="Node" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Particles"]
+z_index = 3
+position = Vector2(-31, -76)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_f8ev2")
+visibility_rect = Rect2(-500, -200, 1000, 400)
+
+[node name="characters" type="Node" parent="."]
+
+[node name="NPCs" type="Node" parent="characters"]
+
+[node name="cat" parent="characters/NPCs" instance=ExtResource("11_2x5l1")]
+position = Vector2(-235, 4)
+script = ExtResource("12_u2146")
+speed = 100.0
+destroy_wait_time = 3.0
+begin = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("13_lpycx")]
+visible = false

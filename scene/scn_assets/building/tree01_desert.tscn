@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://diqlht5xiyibq"]
+
+[ext_resource type="Shader" uid="uid://b28xppvnblvxs" path="res://scripts/swayable.tres" id="1_sppaa"]
+[ext_resource type="Texture2D" uid="uid://8hivtaoiflsc" path="res://assets/sprites/Desert town/摇摆拆.png" id="2_q52pj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k8x5g"]
+shader = ExtResource("1_sppaa")
+shader_parameter/wind_strength = 0.1
+shader_parameter/speed = 1.5
+shader_parameter/start_time = null
+
+[node name="tree01_desert" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_k8x5g")
+position = Vector2(0.5, -1)
+texture = ExtResource("2_q52pj")
+offset = Vector2(0, -42)
+region_enabled = true
+region_rect = Rect2(672, 148, 70, 84)
