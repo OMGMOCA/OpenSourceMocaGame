@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://diqlht5xiyibq"]
 
 [ext_resource type="Shader" uid="uid://b28xppvnblvxs" path="res://scripts/swayable.tres" id="1_sppaa"]
-[ext_resource type="Texture2D" uid="uid://8hivtaoiflsc" path="res://assets/sprites/Desert town/摇摆拆.png" id="2_q52pj"]
+[ext_resource type="Texture2D" uid="uid://b8ccg1od6s1rc" path="res://assets/sprites/desert_town/swaying_tree.png" id="2_svxi3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k8x5g"]
 shader = ExtResource("1_sppaa")
@@ -14,7 +14,7 @@ shader_parameter/start_time = null
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_k8x5g")
 position = Vector2(0.5, -1)
-texture = ExtResource("2_q52pj")
+texture = ExtResource("2_svxi3")
 offset = Vector2(0, -42)
 region_enabled = true
 region_rect = Rect2(672, 148, 70, 84)
