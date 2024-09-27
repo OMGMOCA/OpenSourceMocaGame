@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://diqlht5xiyibq" path="res://scene/scn_assets/building/tree01_desert.tscn" id="3_pdb61"]
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="4_ojj8a"]
 [ext_resource type="PackedScene" uid="uid://bdes4rwa6n7kc" path="res://scene/scn_assets/building/tree01.tscn" id="5_6hold"]
-[ext_resource type="Texture2D" uid="uid://cr2asduy0e741" path="res://assets/sprites/Desert town/沙漠小镇建筑-1024.png" id="5_ijg46"]
+[ext_resource type="Texture2D" uid="uid://dk62jtk22fs7k" path="res://assets/sprites/desert_town/town_1024_8.png" id="5_ijg46"]
 [ext_resource type="PackedScene" uid="uid://cmouo37qu64bw" path="res://scene/tilemap/tilemap_moca_desert.tscn" id="6_ach1s"]
 [ext_resource type="PackedScene" uid="uid://nste2y5r7d6r" path="res://scene/scn_assets/platform/movable_platform.tscn" id="6_s2qcc"]
-[ext_resource type="Texture2D" uid="uid://dvl6t6i86jnmn" path="res://assets/sprites/Desert town/sand Bg-L.png" id="8_j18nj"]
+[ext_resource type="Texture2D" uid="uid://blmuiiauk41qd" path="res://assets/sprites/desert_town/sand_bg_l.png" id="9_626dp"]
 [ext_resource type="Texture2D" uid="uid://vcyptpgie32e" path="res://assets/sprites/building/clouds_512_4.png" id="9_fn48g"]
-[ext_resource type="Texture2D" uid="uid://bwcef4gkl6np1" path="res://assets/sprites/Desert town/sand-Bg-M.png" id="9_vvaty"]
+[ext_resource type="Texture2D" uid="uid://mind58fx3768" path="res://assets/sprites/desert_town/sand_bg_m.png" id="9_vvaty"]
 [ext_resource type="Texture2D" uid="uid://gsgp66bl11gf" path="res://assets/sprites/building/buildings_bg_1024_8.png" id="10_08yg1"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="11_2x5l1"]
 [ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="12_u2146"]
@@ -186,14 +186,14 @@ motion_scale = Vector2(0.2, 0.8)
 
 [node name="sand" parent="background/Parallax/bg01" instance=ExtResource("4_ojj8a")]
 position = Vector2(105, 26)
-texture = ExtResource("8_j18nj")
+texture = ExtResource("9_626dp")
 hframes = 1
 vframes = 1
 sprite_index = 0
 
 [node name="sand2" parent="background/Parallax/bg01" instance=ExtResource("4_ojj8a")]
 position = Vector2(458, 78)
-texture = ExtResource("8_j18nj")
+texture = ExtResource("9_626dp")
 hframes = 1
 vframes = 1
 sprite_index = 0

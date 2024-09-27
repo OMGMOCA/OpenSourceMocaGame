@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnmeiwt5y6an8"
-path="res://.godot/imported/沙漠物件_512_8.png-4a3028ba9ae7db8b976367306c6e7e5d.ctex"
+uid="uid://cgat1r88rc0ya"
+path="res://.godot/imported/sand_bg_s.png-9ec93ef20b1f5ed87897310ea87f1c28.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Desert town/沙漠物件_512_8.png"
-dest_files=["res://.godot/imported/沙漠物件_512_8.png-4a3028ba9ae7db8b976367306c6e7e5d.ctex"]
+source_file="res://assets/sprites/desert_town/sand_bg_s.png"
+dest_files=["res://.godot/imported/sand_bg_s.png-9ec93ef20b1f5ed87897310ea87f1c28.ctex"]
 
 [params]
 

@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://vq1ml5pjp1g0" path="res://scene/characters/char_Neo-Capitalists.tscn" id="15_8vnxc"]
 [ext_resource type="PackedScene" uid="uid://dp2ppu3r3rej4" path="res://scene/characters/char_connector.tscn" id="17_0hcpb"]
 [ext_resource type="PackedScene" uid="uid://dkb867j16tajs" path="res://scene/characters/char_oldwon.tscn" id="18_1ewsy"]
-[ext_resource type="FontFile" uid="uid://n0w13t0gtav4" path="res://assets/fonts/PixelOperator8.ttf" id="19_k6wyo"]
+[ext_resource type="FontFile" uid="uid://dl5adlxgska4g" path="res://assets/fonts/PixelOperator8.ttf" id="19_k6wyo"]
 [ext_resource type="PackedScene" uid="uid://cgvo031r347gp" path="res://scene/scn_assets/swaying_tree.tscn" id="20_yq2bc"]
 [ext_resource type="PackedScene" uid="uid://dblbo1bfq1ksx" path="res://scene/scn_assets/tree.tscn" id="21_ia00l"]
 

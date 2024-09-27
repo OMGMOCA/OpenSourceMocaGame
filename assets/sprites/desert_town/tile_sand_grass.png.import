@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ey7bqlbin6qi"
-path="res://.godot/imported/沙子和草--tilemap_512_8.png-8442cacbeb5109d0edb6ee1d1b39758f.ctex"
+uid="uid://b816oiwpmpa4y"
+path="res://.godot/imported/tile_sand_grass.png-de7ee68c3f93469a54002bba1e4b29d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Desert town/沙子和草--tilemap_512_8.png"
-dest_files=["res://.godot/imported/沙子和草--tilemap_512_8.png-8442cacbeb5109d0edb6ee1d1b39758f.ctex"]
+source_file="res://assets/sprites/desert_town/tile_sand_grass.png"
+dest_files=["res://.godot/imported/tile_sand_grass.png-de7ee68c3f93469a54002bba1e4b29d0.ctex"]
 
 [params]
 

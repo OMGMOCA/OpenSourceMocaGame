@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwcef4gkl6np1"
-path="res://.godot/imported/sand-Bg-M.png-065a3fee55e78f574d63808f1f8f8e2a.ctex"
+uid="uid://b8ccg1od6s1rc"
+path="res://.godot/imported/swaying_tree.png-77418f5b2b0a9b1004d5bdd1457409fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Desert town/sand-Bg-M.png"
-dest_files=["res://.godot/imported/sand-Bg-M.png-065a3fee55e78f574d63808f1f8f8e2a.ctex"]
+source_file="res://assets/sprites/desert_town/swaying_tree.png"
+dest_files=["res://.godot/imported/swaying_tree.png-77418f5b2b0a9b1004d5bdd1457409fa.ctex"]
 
 [params]
 

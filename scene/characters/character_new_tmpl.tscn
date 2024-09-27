@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/character2d/moca_player2d.gd" id="1_quowp"]
 [ext_resource type="Texture2D" uid="uid://cyaq2fp4s380d" path="res://assets/sprites/characters/moca_cc.png" id="2_5wdt8"]
-[ext_resource type="AudioStream" uid="uid://87fyp0bgi5jg" path="res://assets/sounds/jump.wav" id="3_l55qa"]
-[ext_resource type="AudioStream" uid="uid://bni52808fts02" path="res://assets/sounds/slash-21834.mp3" id="4_sx2ea"]
+[ext_resource type="AudioStream" uid="uid://cr0hy3pvwgg2w" path="res://assets/sounds/jump.wav" id="3_l55qa"]
+[ext_resource type="AudioStream" uid="uid://bni52808fts02" path="res://assets/sounds/slash-21834.mp3" id="4_m0wal"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idgee"]
 radius = 5.0
@@ -250,7 +250,7 @@ anim_player = NodePath("../AnimationPlayer")
 stream = ExtResource("3_l55qa")
 
 [node name="Sound_attack" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_sx2ea")
+stream = ExtResource("4_m0wal")
 
 [node name="Area2D" type="Area2D" parent="."]
 monitorable = false

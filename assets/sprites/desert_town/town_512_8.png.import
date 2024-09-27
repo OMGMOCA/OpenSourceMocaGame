@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8hivtaoiflsc"
-path="res://.godot/imported/摇摆拆.png-418d897fd87d24f496141c5f6ee6f7f2.ctex"
+uid="uid://iynb7jesug4x"
+path="res://.godot/imported/town_512_8.png-8380a72c5dcc4232ac8ec7efddf961be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Desert town/摇摆拆.png"
-dest_files=["res://.godot/imported/摇摆拆.png-418d897fd87d24f496141c5f6ee6f7f2.ctex"]
+source_file="res://assets/sprites/desert_town/town_512_8.png"
+dest_files=["res://.godot/imported/town_512_8.png-8380a72c5dcc4232ac8ec7efddf961be.ctex"]
 
 [params]
 
