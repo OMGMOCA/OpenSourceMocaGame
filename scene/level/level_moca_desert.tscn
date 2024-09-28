@@ -241,7 +241,7 @@ position = Vector2(0, 145)
 
 [node name="GradientBackground" type="Sprite2D" parent="background/Parallax/background"]
 z_index = -100
-position = Vector2(0, -190)
+position = Vector2(24, -192)
 scale = Vector2(40, 7)
 texture = SubResource("GradientTexture2D_bka6r")
 

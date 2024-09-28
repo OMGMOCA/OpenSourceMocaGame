@@ -25,6 +25,9 @@ var sound_attack : AudioStreamPlayer2D = null
 
 var attack_input : bool = false
 var attack : bool = false
+var attack_zone : Area2D = null
+var attack_sprite : Sprite2D = null
+var attack_zone_loc : Vector2 = Vector2(0,0)
 
 func _ready() -> void:
 	sprite_2d = find_child("Sprite2D")
@@ -32,15 +35,18 @@ func _ready() -> void:
 	animation_tree = find_child("AnimationTree")
 	sound_jump = find_child("Sound_jump")
 	sound_attack = find_child("Sound_attack")
+	attack_zone = find_child("attackZone")
+	attack_zone_loc = attack_zone.position
+	attack_sprite = attack_zone.find_child("Sprite2D")
+	character_attack_bind()
 	
 
 func _physics_process(delta: float) -> void:
-	character_attack_control(delta)
 	character_move_control(delta)
 	move_and_slide()
 	
 
-func character_attack_control(delta: float) -> void:
+func character_attack_bind() -> void:
 	animation_tree.animation_started.connect(on_anima_started)
 	animation_tree.animation_finished.connect(on_anima_finished)
 
@@ -76,6 +82,12 @@ func character_flip(dir : float) -> void:
 		flip = true
 		
 	sprite_2d.flip_h = flip
+	if flip:
+		attack_zone.position = Vector2(-attack_zone_loc.x,attack_zone_loc.y)
+	else:
+		attack_zone.position = Vector2(attack_zone_loc.x,attack_zone_loc.y)
+	attack_sprite.flip_h = flip
+
 	
 func get_jump(delta : float) -> void:
 	if jump and jump_execute:
@@ -110,6 +122,7 @@ func get_jump_input(input : bool) -> void:
 		jump = false
 
 func get_attack_input(input : bool) -> void:
+	#攻击动画也需要像跳跃那样的输入暂存功能
 	if input:
 		attack_input = true
 
