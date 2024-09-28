@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://b0w1nn1k5u0jm"]
 
-[ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="1_ds6pb"]
+[ext_resource type="Texture2D" uid="uid://djg2tmf525qbf" path="res://assets/sprites/world_tileset.png" id="1_ds6pb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n2wyk"]
 
