@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://jtawkecj701l"]
+[gd_scene load_steps=24 format=3 uid="uid://jtawkecj701l"]
 
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="1_3oa68"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_oxtv0"]
@@ -23,6 +23,43 @@ gradient = SubResource("Gradient_wm6v1")
 fill = 1
 fill_from = Vector2(0.504274, 0.487179)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_6o0vm"]
+resource_name = "lightFlash"
+length = 1.5
+loop_mode = 2
+step = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1.22, -0.25, 0, 0.25, 0, 2.41, -0.25, 0, 0.25, 0, 0.63, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1.5)
+}
+
+[sub_resource type="Animation" id="Animation_tw45t"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7g1ks"]
+_data = {
+"RESET": SubResource("Animation_tw45t"),
+"lightFlash": SubResource("Animation_6o0vm")
+}
 
 [sub_resource type="Gradient" id="Gradient_k2w0d"]
 offsets = PackedFloat32Array(0.737237, 0.995495)
@@ -69,21 +106,28 @@ player = NodePath("../character_new_tmpl")
 [node name="light" type="Node" parent="."]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="light"]
-color = Color(0.103492, 0.0939834, 0.0909312, 1)
+visible = false
+color = Color(0.826927, 0.80923, 0.803568, 1)
 blend_mode = 1
-range_layer_min = -90
+range_layer_min = -200
 range_layer_max = 100
 
 [node name="PointLight2D" type="PointLight2D" parent="light"]
-position = Vector2(-410, -12)
-scale = Vector2(2, 2)
+visible = false
+position = Vector2(-474, -7)
+scale = Vector2(1.93, 1.93)
 color = Color(0.861796, 0.738065, 0.393372, 1)
-energy = 0.3
 range_z_min = -10
 range_z_max = 10
 range_layer_min = -10
 range_layer_max = 10
 texture = SubResource("GradientTexture2D_dsdkh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="light/PointLight2D"]
+libraries = {
+"": SubResource("AnimationLibrary_7g1ks")
+}
+autoplay = "lightFlash"
 
 [node name="scene" type="Node" parent="."]
 
@@ -205,19 +249,19 @@ texture = SubResource("GradientTexture2D_bka6r")
 motion_scale = Vector2(0.1, 0.8)
 
 [node name="clouds" parent="background/Parallax/bg0" instance=ExtResource("4_ojj8a")]
-position = Vector2(71, 141)
+position = Vector2(-33, -48)
 texture = ExtResource("9_fn48g")
 hframes = 2
 vframes = 2
 
 [node name="clouds2" parent="background/Parallax/bg0" instance=ExtResource("4_ojj8a")]
-position = Vector2(437, 137)
+position = Vector2(333, -52)
 texture = ExtResource("9_fn48g")
 hframes = 2
 vframes = 2
 
 [node name="clouds3" parent="background/Parallax/bg0" instance=ExtResource("4_ojj8a")]
-position = Vector2(360, 98)
+position = Vector2(256, -91)
 texture = ExtResource("9_fn48g")
 hframes = 2
 vframes = 2
@@ -261,51 +305,51 @@ sprite_index = 0
 motion_scale = Vector2(0.9, 1)
 
 [node name="buildings10" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-471, 4)
+position = Vector2(-482, 4)
 texture = ExtResource("5_ijg46")
 sprite_index = 8
 
 [node name="buildings11" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-414, 4)
+position = Vector2(-425, 4)
 texture = ExtResource("5_ijg46")
 sprite_index = 7
 
 [node name="buildings12" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-372, 4)
+position = Vector2(-383, 4)
 texture = ExtResource("5_ijg46")
 sprite_index = 7
 
 [node name="buildings13" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-410, -22)
+position = Vector2(-421, -22)
 texture = ExtResource("5_ijg46")
 sprite_index = 5
 
 [node name="buildings14" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-411, -37)
+position = Vector2(-422, -37)
 texture = ExtResource("5_ijg46")
 sprite_index = 11
 
 [node name="buildings15" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-366, -34)
+position = Vector2(-377, -34)
 texture = ExtResource("5_ijg46")
 
 [node name="buildings16" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-368, -22)
+position = Vector2(-379, -22)
 texture = ExtResource("5_ijg46")
 sprite_index = 5
 
 [node name="buildings17" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-312, -33)
+position = Vector2(-323, -33)
 texture = ExtResource("5_ijg46")
 sprite_index = 4
 
 [node name="buildings20" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-309, 4)
+position = Vector2(-320, 4)
 texture = ExtResource("5_ijg46")
 sprite_index = 3
 
 [node name="buildings18" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]
-position = Vector2(-317, -28)
+position = Vector2(-328, -28)
 texture = ExtResource("5_ijg46")
 sprite_index = 14
 
