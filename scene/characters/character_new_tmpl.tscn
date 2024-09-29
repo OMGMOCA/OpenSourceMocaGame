@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://bbt512b3oqqht"]
+[gd_scene load_steps=40 format=3 uid="uid://bbt512b3oqqht"]
 
 [ext_resource type="Script" path="res://scripts/character2d/moca_player2d.gd" id="1_quowp"]
 [ext_resource type="Texture2D" uid="uid://cyaq2fp4s380d" path="res://assets/sprites/characters/moca_cc.png" id="2_5wdt8"]
-[ext_resource type="AudioStream" uid="uid://cr0hy3pvwgg2w" path="res://assets/sounds/jump.wav" id="3_l55qa"]
+[ext_resource type="AudioStream" uid="uid://87fyp0bgi5jg" path="res://assets/sounds/jump.wav" id="3_l55qa"]
 [ext_resource type="AudioStream" uid="uid://bni52808fts02" path="res://assets/sounds/slash-21834.mp3" id="4_m0wal"]
+[ext_resource type="AudioStream" uid="uid://cmql7j8076ikc" path="res://assets/sounds/hit-swing-sword-small-2-95566.mp3" id="5_vrrjq"]
 [ext_resource type="Texture2D" uid="uid://boc7bfpailusd" path="res://assets/sprites/characters/attack01.png" id="5_yevw6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idgee"]
@@ -48,6 +49,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("attackZone:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_26fle"]
 resource_name = "attack01"
@@ -88,6 +101,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("attackZone:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_5cu2c"]
@@ -176,12 +201,29 @@ tracks/0/keys = {
 "values": [10, 11, 12, 13, 14, 15, 16, 17]
 }
 
+[sub_resource type="Animation" id="Animation_ywxkp"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t6u15"]
 _data = {
 "RESET": SubResource("Animation_lwhsx"),
 "attack01": SubResource("Animation_26fle"),
 "death": SubResource("Animation_5cu2c"),
 "fall": SubResource("Animation_ox81s"),
+"hit": SubResource("Animation_ywxkp"),
 "idle": SubResource("Animation_e2icu"),
 "jump": SubResource("Animation_06ser"),
 "walk": SubResource("Animation_vp7gv")
@@ -246,6 +288,9 @@ states/walk/position = Vector2(380, 252)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2grlu"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_447dm"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_o1rj1"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_1pja0"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_i6bi1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_gcj2a"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_plj6m")]
 graph_offset = Vector2(-174, 5)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xlcpp"]
+animation = &"hit"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_narjk"]
 advance_mode = 2
 
@@ -257,6 +302,18 @@ advance_expression = "attack_input"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wwudu"]
+advance_mode = 2
+advance_expression = "hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xg06"]
+advance_mode = 2
+advance_expression = "hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_weuju"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fhm5t"]
 states/End/position = Vector2(1260, 129)
 states/Start/position = Vector2(204, 93)
@@ -264,14 +321,17 @@ states/attack/node = SubResource("AnimationNodeStateMachine_ost5m")
 states/attack/position = Vector2(370, 201)
 states/base/node = SubResource("AnimationNodeStateMachine_v4htb")
 states/base/position = Vector2(370, 93)
-transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_narjk"), "base", "attack", SubResource("AnimationNodeStateMachineTransition_48tyf"), "attack", "base", SubResource("AnimationNodeStateMachineTransition_if3pt")]
-graph_offset = Vector2(-342, -26)
+states/hit/node = SubResource("AnimationNodeAnimation_xlcpp")
+states/hit/position = Vector2(543, 93)
+transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_narjk"), "base", "attack", SubResource("AnimationNodeStateMachineTransition_48tyf"), "attack", "base", SubResource("AnimationNodeStateMachineTransition_if3pt"), "base", "hit", SubResource("AnimationNodeStateMachineTransition_wwudu"), "attack", "hit", SubResource("AnimationNodeStateMachineTransition_2xg06"), "hit", "base", SubResource("AnimationNodeStateMachineTransition_weuju")]
+graph_offset = Vector2(-255, -82)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r4rb"]
 size = Vector2(13, 13)
 
 [node name="character_new_tmpl" type="CharacterBody2D"]
 z_index = 7
+collision_layer = 2
 script = ExtResource("1_quowp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -285,7 +345,6 @@ position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_idgee")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_t6u15")
 }
@@ -302,8 +361,15 @@ stream = ExtResource("3_l55qa")
 [node name="Sound_attack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_m0wal")
 
+[node name="Sound_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vrrjq")
+
 [node name="attackZone" type="Area2D" parent="."]
 position = Vector2(16, -8)
+collision_layer = 0
+collision_mask = 3
+input_pickable = false
+monitoring = false
 monitorable = false
 
 [node name="Sprite2D" type="Sprite2D" parent="attackZone"]

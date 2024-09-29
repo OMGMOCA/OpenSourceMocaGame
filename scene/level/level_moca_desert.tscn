@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://jtawkecj701l"]
+[gd_scene load_steps=25 format=3 uid="uid://jtawkecj701l"]
 
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="1_3oa68"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_oxtv0"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://mind58fx3768" path="res://assets/sprites/desert_town/sand_bg_m.png" id="9_vvaty"]
 [ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="11_2x5l1"]
 [ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="12_u2146"]
+[ext_resource type="Script" path="res://scripts/character2d/moca_character2d.gd" id="13_2evmp"]
 [ext_resource type="PackedScene" uid="uid://347iqbn3po73" path="res://scene/scn_dialogues/asker_test.tscn" id="13_lpycx"]
 
 [sub_resource type="Gradient" id="Gradient_wm6v1"]
@@ -372,6 +373,13 @@ script = ExtResource("12_u2146")
 speed = 100.0
 destroy_wait_time = 3.0
 begin = false
+
+[node name="Enemies" type="Node" parent="characters"]
+
+[node name="Enemy01" parent="characters/Enemies" groups=["Enemies"] instance=ExtResource("1_3oa68")]
+z_index = 5
+position = Vector2(-58, 3)
+script = ExtResource("13_2evmp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

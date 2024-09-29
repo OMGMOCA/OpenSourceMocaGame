@@ -28,6 +28,11 @@ var attack : bool = false
 var attack_zone : Area2D = null
 var attack_sprite : Sprite2D = null
 var attack_zone_loc : Vector2 = Vector2(0,0)
+@export var attack_groups = ["Enemies"]
+
+var hit : bool = false
+var sound_hit : AudioStreamPlayer2D = null
+signal character_hit(attack_pos : Vector2)
 
 func _ready() -> void:
 	sprite_2d = find_child("Sprite2D")
@@ -35,26 +40,61 @@ func _ready() -> void:
 	animation_tree = find_child("AnimationTree")
 	sound_jump = find_child("Sound_jump")
 	sound_attack = find_child("Sound_attack")
+	sound_hit = find_child("Sound_hit")
 	attack_zone = find_child("attackZone")
 	attack_zone_loc = attack_zone.position
 	attack_sprite = attack_zone.find_child("Sprite2D")
 	character_attack_bind()
+	character_hit_bind()
 	
 
 func _physics_process(delta: float) -> void:
 	character_move_control(delta)
 	move_and_slide()
 	
-
+func character_hit_bind() -> void:
+	#角色受到攻击
+	character_hit.connect(on_character_hit)
+	animation_tree.animation_started.connect(on_anima_hit_started)
+	
+func on_character_hit(attack_pos : Vector2) -> void:
+	print("attack_pos: ",attack_pos)
+	var dir = attack_pos.x - position.x
+	dir = dir / abs(dir)
+	if dir > 0:
+		flip = false
+	elif dir < 0:
+		flip = true
+	
+	velocity = Vector2(-dir * 250,-100)
+	hit = true
+	
 func character_attack_bind() -> void:
-	animation_tree.animation_started.connect(on_anima_started)
-	animation_tree.animation_finished.connect(on_anima_finished)
+	animation_tree.animation_started.connect(on_anima_attack_started)
+	animation_tree.animation_finished.connect(on_anima_attack_finished)
+	attack_zone.body_entered.connect(on_attack_detect)
 
-func on_anima_started(anima_name : StringName) -> void:
+func on_attack_detect(body: Node2D) -> void:
+	for group in attack_groups:
+		if body.is_in_group("Enemies"):
+			print("body.is_in_group: ",body.get_groups())
+			#发送消息给被击中的角色
+			body.character_hit.emit(position)
+			attack_feedback()
+			break
+func attack_feedback() -> void:
+	#用于玩家角色的镜头反馈等
+	pass
+func on_anima_hit_started(anima_name : StringName) -> void:
+	if anima_name == "hit":
+		sound_hit.play()
+		hit = false
+		
+func on_anima_attack_started(anima_name : StringName) -> void:
 	if anima_name == "attack01":
 		sound_attack.play()
 		
-func on_anima_finished(anima_name : StringName) -> void:
+func on_anima_attack_finished(anima_name : StringName) -> void:
 	if anima_name == "attack01":
 		attack_input = false
 	
