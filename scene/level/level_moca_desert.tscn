@@ -224,7 +224,7 @@ texture = ExtResource("6_hxsd3")
 sprite_index = 2
 
 [node name="assets8" parent="scene/sen_layer01" instance=ExtResource("4_ojj8a")]
-position = Vector2(-897, 28)
+position = Vector2(-897, 30)
 texture = ExtResource("6_hxsd3")
 sprite_index = 0
 

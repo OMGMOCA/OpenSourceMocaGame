@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bbt512b3oqqht"]
+[gd_scene load_steps=42 format=3 uid="uid://bbt512b3oqqht"]
 
 [ext_resource type="Script" path="res://scripts/character2d/moca_player2d.gd" id="1_quowp"]
 [ext_resource type="Texture2D" uid="uid://cyaq2fp4s380d" path="res://assets/sprites/characters/moca_cc.png" id="2_5wdt8"]
@@ -288,6 +288,9 @@ states/walk/position = Vector2(380, 252)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2grlu"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_447dm"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_o1rj1"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_1pja0"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_i6bi1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_gcj2a"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_plj6m")]
 graph_offset = Vector2(-174, 5)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_drl60"]
+animation = &"death"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xlcpp"]
 animation = &"hit"
 
@@ -314,6 +317,10 @@ advance_expression = "hit"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_08nqt"]
+advance_mode = 2
+advance_expression = "is_dead"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fhm5t"]
 states/End/position = Vector2(1260, 129)
 states/Start/position = Vector2(204, 93)
@@ -321,10 +328,12 @@ states/attack/node = SubResource("AnimationNodeStateMachine_ost5m")
 states/attack/position = Vector2(370, 201)
 states/base/node = SubResource("AnimationNodeStateMachine_v4htb")
 states/base/position = Vector2(370, 93)
+states/death/node = SubResource("AnimationNodeAnimation_drl60")
+states/death/position = Vector2(543, -7)
 states/hit/node = SubResource("AnimationNodeAnimation_xlcpp")
 states/hit/position = Vector2(543, 93)
-transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_narjk"), "base", "attack", SubResource("AnimationNodeStateMachineTransition_48tyf"), "attack", "base", SubResource("AnimationNodeStateMachineTransition_if3pt"), "base", "hit", SubResource("AnimationNodeStateMachineTransition_wwudu"), "attack", "hit", SubResource("AnimationNodeStateMachineTransition_2xg06"), "hit", "base", SubResource("AnimationNodeStateMachineTransition_weuju")]
-graph_offset = Vector2(-255, -82)
+transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_narjk"), "base", "attack", SubResource("AnimationNodeStateMachineTransition_48tyf"), "attack", "base", SubResource("AnimationNodeStateMachineTransition_if3pt"), "base", "hit", SubResource("AnimationNodeStateMachineTransition_wwudu"), "attack", "hit", SubResource("AnimationNodeStateMachineTransition_2xg06"), "hit", "base", SubResource("AnimationNodeStateMachineTransition_weuju"), "hit", "death", SubResource("AnimationNodeStateMachineTransition_08nqt")]
+graph_offset = Vector2(-360, -121)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r4rb"]
 size = Vector2(13, 13)

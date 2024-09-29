@@ -30,9 +30,13 @@ var attack_sprite : Sprite2D = null
 var attack_zone_loc : Vector2 = Vector2(0,0)
 @export var attack_groups = ["Enemies"]
 
+@export var damage : int = 20
+
 var hit : bool = false
 var sound_hit : AudioStreamPlayer2D = null
-signal character_hit(attack_pos : Vector2)
+signal character_hit(attack_pos : Vector2,damage : int)
+
+
 
 func _ready() -> void:
 	sprite_2d = find_child("Sprite2D")
@@ -49,15 +53,19 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	if is_dead: return
 	character_move_control(delta)
 	move_and_slide()
+	character_health_control()
 	
 func character_hit_bind() -> void:
 	#角色受到攻击
 	character_hit.connect(on_character_hit)
 	animation_tree.animation_started.connect(on_anima_hit_started)
 	
-func on_character_hit(attack_pos : Vector2) -> void:
+func on_character_hit(is_player : bool,attack_pos : Vector2,_damage : int) -> void:
+	if is_dead: return
+	
 	var dir = attack_pos.x - position.x
 	dir = dir / abs(dir)
 	if dir > 0:
@@ -67,6 +75,9 @@ func on_character_hit(attack_pos : Vector2) -> void:
 	
 	velocity = Vector2(-dir * 250,-100)
 	hit = true
+	#攻击期间应该禁止角色翻转，直到当前动作执行结束
+	health -= damage
+	attack_feedback(is_player)
 	
 func character_attack_bind() -> void:
 	animation_tree.animation_started.connect(on_anima_attack_started)
@@ -74,16 +85,38 @@ func character_attack_bind() -> void:
 	attack_zone.body_entered.connect(on_attack_detect)
 
 func on_attack_detect(body: Node2D) -> void:
+	#如何在攻击多个敌人时，让命中脚本依次且间隔执行
 	for group in attack_groups:
 		if body.is_in_group("Enemies"):
 			#发送消息给被击中的角色
-			body.character_hit.emit(position)
-			attack_feedback()
+			var is_player = is_in_group("Player")
+			body.character_hit.emit(is_player,position,damage)
 			#创建被攻击的玩家清单，攻击结束后重置，避免对方承受多次攻击
 			break
-func attack_feedback() -> void:
-	#用于玩家角色的镜头反馈等
-	pass
+func attack_feedback(is_player : bool) -> void:
+	#仅在攻击者是玩家时执行
+	if not is_player: return
+	#帧冻结
+	Engine.time_scale = 0
+	await get_tree().create_timer(0.1,true,false,true).timeout
+	Engine.time_scale = 1.
+	#相机控制
+	var current_camera : Camera2D = get_window().get_camera_2d()
+	#tween
+	var dir : int
+	if sprite_2d.flip_h:
+		dir = 1
+	else:
+		dir = -1
+	var _offset = current_camera.offset + Vector2(dir * 10,0)
+	var _zoom = current_camera.zoom * 1
+	var camera_tween : Tween = create_tween()
+	
+	if current_camera:
+		camera_tween.tween_property(current_camera,"offset",current_camera.offset,0.1).from(_offset)
+		camera_tween.tween_property(current_camera,"zoom",current_camera.zoom,0.1).from(_zoom)
+		
+		
 func on_anima_hit_started(anima_name : StringName) -> void:
 	if anima_name == "hit":
 		sound_hit.play()
@@ -96,7 +129,12 @@ func on_anima_attack_started(anima_name : StringName) -> void:
 func on_anima_attack_finished(anima_name : StringName) -> void:
 	if anima_name == "attack01":
 		attack_input = false
-	
+
+func character_health_control() -> void:
+
+	if health <= 0:
+		health = 0
+		is_dead = true
 func character_move_control(delta: float) -> void:
 	#重力控制
 	if not is_on_floor():
