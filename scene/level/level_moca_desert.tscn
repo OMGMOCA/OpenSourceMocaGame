@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://jtawkecj701l"]
+[gd_scene load_steps=26 format=3 uid="uid://jtawkecj701l"]
 
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="1_3oa68"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_oxtv0"]
+[ext_resource type="PackedScene" uid="uid://c73c0fnypy2n4" path="res://scene/light/world_environment.tscn" id="3_bu13x"]
 [ext_resource type="PackedScene" uid="uid://diqlht5xiyibq" path="res://scene/scn_assets/building/tree01_desert.tscn" id="3_pdb61"]
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="4_ojj8a"]
 [ext_resource type="Texture2D" uid="uid://dk62jtk22fs7k" path="res://assets/sprites/desert_town/town_1024_8.png" id="5_ijg46"]
@@ -108,7 +109,7 @@ player = NodePath("../character_new_tmpl")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="light"]
 visible = false
-color = Color(0.826927, 0.80923, 0.803568, 1)
+color = Color(0.850893, 0.835371, 0.830406, 1)
 blend_mode = 1
 range_layer_min = -200
 range_layer_max = 100
@@ -129,6 +130,8 @@ libraries = {
 "": SubResource("AnimationLibrary_7g1ks")
 }
 autoplay = "lightFlash"
+
+[node name="WorldEnvironment" parent="light" instance=ExtResource("3_bu13x")]
 
 [node name="scene" type="Node" parent="."]
 

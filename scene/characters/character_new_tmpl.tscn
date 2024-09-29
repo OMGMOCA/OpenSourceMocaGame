@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bbt512b3oqqht"]
+[gd_scene load_steps=44 format=3 uid="uid://bbt512b3oqqht"]
 
 [ext_resource type="Script" path="res://scripts/character2d/moca_player2d.gd" id="1_quowp"]
 [ext_resource type="Texture2D" uid="uid://cyaq2fp4s380d" path="res://assets/sprites/characters/moca_cc.png" id="2_5wdt8"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bni52808fts02" path="res://assets/sounds/slash-21834.mp3" id="4_m0wal"]
 [ext_resource type="AudioStream" uid="uid://cmql7j8076ikc" path="res://assets/sounds/hit-swing-sword-small-2-95566.mp3" id="5_vrrjq"]
 [ext_resource type="Texture2D" uid="uid://boc7bfpailusd" path="res://assets/sprites/characters/attack01.png" id="5_yevw6"]
+[ext_resource type="Shader" path="res://scripts/shader/hdr_light.gdshader" id="6_433tc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_idgee"]
 radius = 5.0
@@ -335,6 +336,10 @@ states/hit/position = Vector2(543, 93)
 transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_narjk"), "base", "attack", SubResource("AnimationNodeStateMachineTransition_48tyf"), "attack", "base", SubResource("AnimationNodeStateMachineTransition_if3pt"), "base", "hit", SubResource("AnimationNodeStateMachineTransition_wwudu"), "attack", "hit", SubResource("AnimationNodeStateMachineTransition_2xg06"), "hit", "base", SubResource("AnimationNodeStateMachineTransition_weuju"), "hit", "death", SubResource("AnimationNodeStateMachineTransition_08nqt")]
 graph_offset = Vector2(-360, -121)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5owcd"]
+shader = ExtResource("6_433tc")
+shader_parameter/replace_color = Color(5, 5, 5, 1)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r4rb"]
 size = Vector2(13, 13)
 
@@ -383,6 +388,7 @@ monitorable = false
 
 [node name="Sprite2D" type="Sprite2D" parent="attackZone"]
 visible = false
+material = SubResource("ShaderMaterial_5owcd")
 texture = ExtResource("5_yevw6")
 hframes = 4
 frame = 2
