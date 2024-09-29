@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://babclauvqhm0y"]
+
+[ext_resource type="Texture2D" uid="uid://b816oiwpmpa4y" path="res://assets/sprites/desert_town/tile_sand_grass.png" id="1_hteww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gdyk"]
+size = Vector2(48, 15)
+
+[node name="movable_platform" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -0.5)
+texture = ExtResource("1_hteww")
+offset = Vector2(0, 0.5)
+region_enabled = true
+region_rect = Rect2(111, 223, 50, 18)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_8gdyk")
+one_way_collision = true
