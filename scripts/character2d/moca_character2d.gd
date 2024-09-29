@@ -58,7 +58,6 @@ func character_hit_bind() -> void:
 	animation_tree.animation_started.connect(on_anima_hit_started)
 	
 func on_character_hit(attack_pos : Vector2) -> void:
-	print("attack_pos: ",attack_pos)
 	var dir = attack_pos.x - position.x
 	dir = dir / abs(dir)
 	if dir > 0:
@@ -77,10 +76,10 @@ func character_attack_bind() -> void:
 func on_attack_detect(body: Node2D) -> void:
 	for group in attack_groups:
 		if body.is_in_group("Enemies"):
-			print("body.is_in_group: ",body.get_groups())
 			#发送消息给被击中的角色
 			body.character_hit.emit(position)
 			attack_feedback()
+			#创建被攻击的玩家清单，攻击结束后重置，避免对方承受多次攻击
 			break
 func attack_feedback() -> void:
 	#用于玩家角色的镜头反馈等
