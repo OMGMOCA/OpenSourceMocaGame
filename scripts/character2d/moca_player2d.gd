@@ -1,5 +1,7 @@
 extends MocaCharacter2d
 
+@export var game_control : MOCAGameControl = null
+
 func _ready() -> void:
 	super()
 	#设置使用该脚本的角色分组为Player
@@ -26,4 +28,7 @@ func _physics_process(delta: float) -> void:
 		get_attack_input(true)
 	if Input.is_action_just_released("attack1"):
 		get_attack_input(false)
-		
+
+func character_death() -> void:
+	if game_control:
+		game_control.player_death.emit()

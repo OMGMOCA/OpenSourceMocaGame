@@ -39,23 +39,31 @@ signal character_hit(attack_pos : Vector2,damage : int)
 
 
 func _ready() -> void:
+	#获取角色精灵
 	sprite_2d = find_child("Sprite2D")
+	#角色翻转初始化
 	sprite_2d.flip_h = flip
+	#获取角色动画树
 	animation_tree = find_child("AnimationTree")
+	#获取角色音效组件
 	sound_jump = find_child("Sound_jump")
 	sound_attack = find_child("Sound_attack")
 	sound_hit = find_child("Sound_hit")
+	#获取角色伤害检测区
 	attack_zone = find_child("attackZone")
+	#attack_zone_loc用于角色翻转时伤害检测区域的位置调整
 	attack_zone_loc = attack_zone.position
+	#获取角色攻击时的动画
 	attack_sprite = attack_zone.find_child("Sprite2D")
 	character_attack_bind()
 	character_hit_bind()
 	
 
 func _physics_process(delta: float) -> void:
-	if is_dead: return
 	character_move_control(delta)
+	#move_and_slide()为系统函数，用于更新角色的速度等属性
 	move_and_slide()
+	
 	character_health_control()
 	
 func character_hit_bind() -> void:
@@ -76,7 +84,7 @@ func on_character_hit(is_player : bool,attack_pos : Vector2,_damage : int) -> vo
 	velocity = Vector2(-dir * 250,-100)
 	hit = true
 	#攻击期间应该禁止角色翻转，直到当前动作执行结束
-	health -= damage
+	health -= _damage
 	attack_feedback(is_player)
 	
 func character_attack_bind() -> void:
@@ -87,7 +95,7 @@ func character_attack_bind() -> void:
 func on_attack_detect(body: Node2D) -> void:
 	#如何在攻击多个敌人时，让命中脚本依次且间隔执行
 	for group in attack_groups:
-		if body.is_in_group("Enemies"):
+		if body.is_in_group(group):
 			#发送消息给被击中的角色
 			var is_player = is_in_group("Player")
 			body.character_hit.emit(is_player,position,damage)
@@ -96,6 +104,7 @@ func on_attack_detect(body: Node2D) -> void:
 func attack_feedback(is_player : bool) -> void:
 	#仅在攻击者是玩家时执行
 	if not is_player: return
+	#是否需要将这些功能移至相机脚本?
 	#帧冻结
 	Engine.time_scale = 0
 	await get_tree().create_timer(0.1,true,false,true).timeout
@@ -119,22 +128,34 @@ func attack_feedback(is_player : bool) -> void:
 		
 func on_anima_hit_started(anima_name : StringName) -> void:
 	if anima_name == "hit":
+		#如果当前播放动画为hit时执行
 		sound_hit.play()
 		hit = false
 		
 func on_anima_attack_started(anima_name : StringName) -> void:
+	#尝试合并所有的以动画started事件至一个函数
 	if anima_name == "attack01":
+		#如果当前播放动画为attack时执行
 		sound_attack.play()
 		
 func on_anima_attack_finished(anima_name : StringName) -> void:
+	#尝试合并所有的以动画finished事件至一个函数
 	if anima_name == "attack01":
+		#如果动画为attack播放结束时执行
 		attack_input = false
 
 func character_health_control() -> void:
-
+	#血量反馈
 	if health <= 0:
 		health = 0
 		is_dead = true
+		#执行死亡相关功能，例如重置角色
+		#如果是玩家死亡仅发消息给gamecontrol
+		#如果是其他角色死亡，三秒后销毁
+		character_death()
+func character_death() -> void:
+	await get_tree().create_timer(3,true,false,true).timeout
+	queue_free()
 func character_move_control(delta: float) -> void:
 	#重力控制
 	if not is_on_floor():
