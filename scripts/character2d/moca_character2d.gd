@@ -70,6 +70,9 @@ func character_hit_bind() -> void:
 	#角色受到攻击
 	character_hit.connect(on_character_hit)
 	animation_tree.animation_started.connect(on_anima_hit_started)
+	#克隆当前材质，让角色拥有独立的材质，从而实现动态修改材质属性
+	var ins_material = sprite_2d.material.duplicate()
+	sprite_2d.material = ins_material
 	
 func on_character_hit(is_player : bool,attack_pos : Vector2,_damage : int) -> void:
 	if is_dead: return
@@ -131,6 +134,9 @@ func on_anima_hit_started(anima_name : StringName) -> void:
 		#如果当前播放动画为hit时执行
 		sound_hit.play()
 		hit = false
+		sprite_2d.material.set("shader_param/is_hit", true)
+		await get_tree().create_timer(0.2,true,false,true).timeout
+		sprite_2d.material.set("shader_param/is_hit", false)
 		
 func on_anima_attack_started(anima_name : StringName) -> void:
 	#尝试合并所有的以动画started事件至一个函数
