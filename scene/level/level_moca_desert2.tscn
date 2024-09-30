@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://cc7w33xujb3h4"]
+[gd_scene load_steps=70 format=4 uid="uid://cc7w33xujb3h4"]
 
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="1_7jxdl"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_sdg33"]
@@ -6,17 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="4_xogir"]
 [ext_resource type="Texture2D" uid="uid://daxklujhkt2xs" path="res://assets/sprites/desert_town/desert_jump_1024_4.png" id="5_luw8j"]
 [ext_resource type="PackedScene" uid="uid://babclauvqhm0y" path="res://scene/scn_assets/platform/movable_platform_desert.tscn" id="6_xealk"]
-[ext_resource type="Texture2D" uid="uid://dqm3f6qt5qcev" path="res://assets/sprites/world_tileset.png" id="7_jq6a0"]
+[ext_resource type="Texture2D" uid="uid://cckk838lp7l4c" path="res://assets/sprites/slime_green.png" id="7_6jba4"]
+[ext_resource type="Script" path="res://scripts/assets_sprites/trap.gd" id="7_gkhal"]
+[ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="7_jq6a0"]
 [ext_resource type="Texture2D" uid="uid://c6d7mq8lrpmta" path="res://assets/sprites/tiles/road.png" id="8_1w8pw"]
 [ext_resource type="Texture2D" uid="uid://vcyptpgie32e" path="res://assets/sprites/building/clouds_512_4.png" id="9_0jwog"]
 [ext_resource type="Texture2D" uid="uid://b816oiwpmpa4y" path="res://assets/sprites/desert_town/tile_sand_grass.png" id="9_hyryn"]
 [ext_resource type="Texture2D" uid="uid://blmuiiauk41qd" path="res://assets/sprites/desert_town/sand_bg_l.png" id="10_51k20"]
 [ext_resource type="Texture2D" uid="uid://mind58fx3768" path="res://assets/sprites/desert_town/sand_bg_m.png" id="11_hi4fa"]
 [ext_resource type="Texture2D" uid="uid://oe2ieghxvioq" path="res://assets/sprites/desert_town/desert_jump_1024_8.png" id="11_prkog"]
-[ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="12_e5fdy"]
+[ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/deprecated/char_cat.tscn" id="12_e5fdy"]
 [ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="13_tmtgo"]
 [ext_resource type="Script" path="res://scripts/character2d/moca_character2d.gd" id="14_kvkse"]
 [ext_resource type="PackedScene" uid="uid://347iqbn3po73" path="res://scene/scn_dialogues/asker_test.tscn" id="15_oftsy"]
+[ext_resource type="Script" path="res://scripts/game_control/moca_game_ctrl.gd" id="20_yatw1"]
 
 [sub_resource type="Gradient" id="Gradient_wm6v1"]
 offsets = PackedFloat32Array(0, 0.561562)
@@ -140,6 +143,12 @@ _data = {
 "RESET": SubResource("Animation_yo5uc"),
 "movable_platform": SubResource("Animation_v3l6o")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q7eek"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_68xw2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_n2wyk"]
 
@@ -548,8 +557,9 @@ alpha_curve = SubResource("CurveTexture_jy3s6")
 
 [node name="level_moca_0924" type="Node2D"]
 
-[node name="character_new_tmpl" parent="." instance=ExtResource("1_7jxdl")]
+[node name="character_new_tmpl" parent="." node_paths=PackedStringArray("game_control") instance=ExtResource("1_7jxdl")]
 position = Vector2(-514, -55)
+game_control = NodePath("../game_control")
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_sdg33")]
 texture_filter = 2
@@ -740,6 +750,30 @@ autoplay = "movable_platform"
 
 [node name="movable_platform4" parent="scene/movable_platforms" instance=ExtResource("6_xealk")]
 position = Vector2(381, -181)
+
+[node name="Trap" type="Area2D" parent="scene"]
+z_index = 5
+position = Vector2(-595, -3)
+collision_mask = 3
+script = ExtResource("7_gkhal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene/Trap"]
+shape = SubResource("CapsuleShape2D_q7eek")
+
+[node name="Sprite2D" type="Sprite2D" parent="scene/Trap"]
+texture = ExtResource("7_6jba4")
+region_enabled = true
+region_rect = Rect2(28, 35, 16, 14)
+
+[node name="trap_death_border" type="Area2D" parent="scene"]
+z_index = 5
+position = Vector2(-1657, 131)
+collision_mask = 3
+script = ExtResource("7_gkhal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scene/trap_death_border"]
+position = Vector2(12, -22)
+shape = SubResource("WorldBoundaryShape2D_68xw2")
 
 [node name="tilemap" type="Node" parent="."]
 
@@ -1413,3 +1447,6 @@ script = ExtResource("14_kvkse")
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("15_oftsy")]
 visible = false
+
+[node name="game_control" type="Node" parent="."]
+script = ExtResource("20_yatw1")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=4 uid="uid://dcxs0fil3pa7t"]
 
-[ext_resource type="Texture2D" uid="uid://dxun4k224b7yv" path="res://assets/sprites/world_tileset.png" id="1_5gyxc"]
+[ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="1_5gyxc"]
 [ext_resource type="Texture2D" uid="uid://c6d7mq8lrpmta" path="res://assets/sprites/tiles/road.png" id="2_xtfi3"]
 [ext_resource type="Texture2D" uid="uid://b816oiwpmpa4y" path="res://assets/sprites/desert_town/tile_sand_grass.png" id="3_fdew7"]
 

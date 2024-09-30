@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="11_ib2eu"]
 [ext_resource type="Script" path="res://scripts/char_spawner/_character2d.gd" id="12_4xn3q"]
 [ext_resource type="PackedScene" uid="uid://nste2y5r7d6r" path="res://scene/scn_assets/platform/movable_platform.tscn" id="13_0b4xs"]
-[ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/char_cat.tscn" id="13_visxw"]
+[ext_resource type="PackedScene" uid="uid://clp6h52dnc566" path="res://scene/characters/deprecated/char_cat.tscn" id="13_visxw"]
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="15_vt7ue"]
 [ext_resource type="PackedScene" uid="uid://347iqbn3po73" path="res://scene/scn_dialogues/asker_test.tscn" id="18_nonaq"]
 
