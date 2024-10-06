@@ -6,8 +6,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ibaiu"]
 shader = ExtResource("2_taam2")
-shader_parameter/color_palette = [Color(0, 0, 0, 1), Color(0.435294, 0.239216, 0.027451, 1), Color(0.521569, 0.321569, 0.109804, 1), Color(0.670588, 0.443137, 0.196078, 1), Color(0.984314, 0.447059, 0.211765, 1), Color(0.690196, 0.627451, 0.627451, 1), Color(0.972549, 0.764706, 0.133333, 1), Color(1, 1, 1, 1)]
-shader_parameter/color_palette_new = [Color(0, 0, 0, 1), Color(0.435294, 0.239216, 0.027451, 1), Color(0.521569, 0.321569, 0.109804, 1), Color(0.670588, 0.443137, 0.196078, 1), Color(0.984314, 0.447059, 0.211765, 1), Color(0.690196, 0.627451, 0.627451, 1), Color(0.972549, 0.764706, 0.133333, 1), Color(1, 1, 1, 1)]
+shader_parameter/color_palette = [Color(0, 0, 0, 1), Color(0.435294, 0.239216, 0.027451, 1), Color(0.521569, 0.321569, 0.109804, 1), Color(0.670588, 0.443137, 0.196078, 1), Color(0.690196, 0.627451, 0.627451, 1), Color(1, 0.713726, 0.168627, 1), Color(1, 0.772549, 0, 1), Color(0.403922, 1, 0.537255, 1)]
+shader_parameter/color_palette_new = [Color(0, 0, 0, 1), Color(0.435294, 0.239216, 0.027451, 1), Color(0.521569, 0.321569, 0.109804, 1), Color(0.670588, 0.443137, 0.196078, 1), Color(0.690196, 0.627451, 0.627451, 1), Color(1, 0.713726, 0.168627, 1), Color(1, 0.772549, 0, 1), Color(0.403922, 1, 0.537255, 1)]
 shader_parameter/palette_length = 8
 
 [node name="ColorEditor" type="Control"]
@@ -16,7 +16,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -722.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -32,6 +31,7 @@ grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -44,12 +44,13 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 1
 material = SubResource("ShaderMaterial_ibaiu")
-custom_minimum_size = Vector2(300, 300)
+custom_minimum_size = Vector2(450, 450)
 layout_mode = 2
 texture = ExtResource("3_3tbyk")
-expand_mode = 1
-stretch_mode = 5
+expand_mode = 2
+stretch_mode = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/TextureRect"]
 layout_mode = 1
