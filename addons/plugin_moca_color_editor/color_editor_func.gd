@@ -6,6 +6,7 @@ extends Control
 @onready var texture_rect : TextureRect = $ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/TextureRect
 @onready var grid_container : GridContainer = $ScrollContainer/MarginContainer/VBoxContainer/GridContainer
 
+var img_path = "addons/%s.png" % "save_img"
 
 var color_palette = {}
 var shader_material : Material
@@ -15,13 +16,15 @@ func _ready() -> void:
 	print("plugin added")
 	shader_material = texture_rect.material
 	add_texture_bind()
+	apply_btn.pressed.connect(apply_changes_to_image)
 	
 	get_image(null)
-	palette_update()
+	#palette_update()
 	
 
 	
-
+#打开加载图片对话框
+#拖拽图片至窗口
 func add_texture_bind():
 	var file_dialog = FileDialog.new()
 	#使用系统的对话框
@@ -35,22 +38,18 @@ func add_texture_bind():
 	load_texture_btn.pressed.connect(func(): 
 		file_dialog.popup_centered()
 	)
-	
 	#拖拽图片加载
 	get_tree().get_root().files_dropped.connect(on_files_droped)
 	
-	apply_btn.pressed.connect(apply_changes_to_image)
-
+	
+#应用修改
 func apply_changes_to_image():
 	print("save img! ")
 	
-	#var img = texture_rect.get_viewport().get_texture().get_image()
 	var img = texture_rect.texture.get_image()
-	texture_rect.material.get_local_scene()
-	#var img = texture_rect.get_viewport().get_texture()
-	var img_path = "addons/%s.png" % "save_img"
-	#img.save_png(img_path)
+	#texture_rect.material.get_local_scene()
 
+	#应用变换，与材质内变换功能类似
 	for y in range(img.get_height()):
 		for x in range(img.get_width()):
 			var color = img.get_pixel(x, y)
@@ -58,30 +57,29 @@ func apply_changes_to_image():
 				if color == key:
 					color = color_palette[key]
 					img.set_pixel(x, y, color)
+
+	#保存图片
 	img.save_png(img_path)
-	
+	#更新色板，以便下一次修改
+	get_image(img_path)
 
-	#img.emit_changed()
-
-
-			
 func on_file_selected(path):
 	get_image(path)
 
 func on_files_droped(files):
 	if not mouse_over_ctrl(texture_rect): return
-	
 	var path = files[0]
 	get_image(path)
 
+#加载图片并更新色板
 func get_image(path):
+	#获取图片路径
 	if path:
-		var texture = load(path)
+		img_path = path
+		var texture = load(img_path)
 		if texture:
 			texture_rect.texture = texture
-	
-
-	
+	#将图片更新至预览界面
 	var img = texture_rect.texture.get_image()
 
 	var width = img.get_width()
