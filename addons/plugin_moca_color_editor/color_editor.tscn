@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://tdrdf17w7wi2"]
+
+[ext_resource type="Script" path="res://addons/plugin_moca_color_editor/color_editor_func.gd" id="1_lpm6r"]
+[ext_resource type="Shader" path="res://addons/plugin_moca_color_editor/color_editor.gdshader" id="2_taam2"]
+[ext_resource type="Texture2D" uid="uid://ccjj7tfiqt8b8" path="res://addons/plugin_moca_color_editor/img.png" id="3_3tbyk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibaiu"]
+shader = ExtResource("2_taam2")
+shader_parameter/color_palette = [Color(0, 0, 0, 1), Color(0.435294, 0.239216, 0.027451, 1), Color(0.521569, 0.321569, 0.109804, 1), Color(0.670588, 0.443137, 0.196078, 1), Color(0.984314, 0.447059, 0.211765, 1), Color(0.690196, 0.627451, 0.627451, 1), Color(0.972549, 0.764706, 0.133333, 1), Color(1, 1, 1, 1)]
+shader_parameter/color_palette_new = [Color(0, 0, 0, 1), Color(0.435294, 0.239216, 0.027451, 1), Color(0.521569, 0.321569, 0.109804, 1), Color(0.670588, 0.443137, 0.196078, 1), Color(0.984314, 0.447059, 0.211765, 1), Color(0.690196, 0.627451, 0.627451, 1), Color(0.972549, 0.764706, 0.133333, 1), Color(1, 1, 1, 1)]
+shader_parameter/palette_length = 8
+
+[node name="ColorEditor" type="Control"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -722.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_lpm6r")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+material = SubResource("ShaderMaterial_ibaiu")
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("3_3tbyk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+offset_right = 150.0
+grow_vertical = 0
+
+[node name="load_btn" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/TextureRect/HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "打开贴图"
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+columns = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="apply_btn" type="Button" parent="ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "应用"
