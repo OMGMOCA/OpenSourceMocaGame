@@ -62,6 +62,9 @@ func apply_changes_to_image():
 	img.save_png(img_path)
 	#更新色板，以便下一次修改
 	get_image(img_path)
+	
+	Resource
+	
 
 func on_file_selected(path):
 	get_image(path)
