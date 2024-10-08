@@ -1,8 +1,8 @@
-[gd_scene load_steps=70 format=4 uid="uid://cc7w33xujb3h4"]
+[gd_scene load_steps=71 format=4 uid="uid://cc7w33xujb3h4"]
 
+[ext_resource type="PackedScene" uid="uid://dvjrha8dnanh5" path="res://scene/characters/char_3r2_tmpl.tscn" id="1_6rdg4"]
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="1_7jxdl"]
 [ext_resource type="PackedScene" uid="uid://celhshm8tlptu" path="res://scene/cameras/camera.tscn" id="2_sdg33"]
-[ext_resource type="PackedScene" uid="uid://c73c0fnypy2n4" path="res://scene/light/world_environment.tscn" id="3_5kfst"]
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="4_xogir"]
 [ext_resource type="Texture2D" uid="uid://daxklujhkt2xs" path="res://assets/sprites/desert_town/desert_jump_1024_4.png" id="5_luw8j"]
 [ext_resource type="PackedScene" uid="uid://babclauvqhm0y" path="res://scene/scn_assets/platform/movable_platform_desert.tscn" id="6_xealk"]
@@ -67,6 +67,10 @@ _data = {
 "RESET": SubResource("Animation_tw45t"),
 "lightFlash": SubResource("Animation_6o0vm")
 }
+
+[sub_resource type="Environment" id="Environment_wnoax"]
+background_mode = 1
+background_color = Color(0.362829, 0.362829, 0.362829, 1)
 
 [sub_resource type="Animation" id="Animation_naliu"]
 length = 0.001
@@ -558,7 +562,7 @@ alpha_curve = SubResource("CurveTexture_jy3s6")
 [node name="level_moca_0924" type="Node2D"]
 
 [node name="character_new_tmpl" parent="." node_paths=PackedStringArray("game_control") instance=ExtResource("1_7jxdl")]
-position = Vector2(-514, -55)
+position = Vector2(-503, -7)
 game_control = NodePath("../game_control")
 
 [node name="Camera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_sdg33")]
@@ -596,7 +600,8 @@ libraries = {
 }
 autoplay = "lightFlash"
 
-[node name="WorldEnvironment" parent="light" instance=ExtResource("3_5kfst")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="light"]
+environment = SubResource("Environment_wnoax")
 
 [node name="scene" type="Node" parent="."]
 
@@ -1440,8 +1445,12 @@ begin = false
 
 [node name="Enemy01" parent="characters/Enemies" groups=["Enemies"] instance=ExtResource("1_7jxdl")]
 z_index = 5
-position = Vector2(-292, -15)
+position = Vector2(-205, -50)
 script = ExtResource("14_kvkse")
+
+[node name="enemy_01" parent="characters/Enemies" groups=["Enemies"] instance=ExtResource("1_6rdg4")]
+position = Vector2(-278, -8)
+flip_is_right = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

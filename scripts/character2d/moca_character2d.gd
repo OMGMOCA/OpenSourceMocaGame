@@ -5,6 +5,7 @@ class_name MocaCharacter2d
 @export var health : int = 100
 @export var destroy_wait_time : int = 3
 @export var flip : bool = false
+@export var flip_is_right = false
 
 var jump : bool = false #跳跃输入
 var jump_execute : bool = false
@@ -80,9 +81,15 @@ func on_character_hit(is_player : bool,attack_pos : Vector2,_damage : int) -> vo
 	var dir = attack_pos.x - position.x
 	dir = dir / abs(dir)
 	if dir > 0:
-		flip = false
+		if not flip_is_right:
+			flip = false
+		else:
+			flip = true
 	elif dir < 0:
-		flip = true
+		if not flip_is_right:
+			flip = true
+		else:
+			flip = false
 	
 	velocity = Vector2(-dir * 250,-100)
 	hit = true
@@ -181,9 +188,15 @@ func character_move_control(delta: float) -> void:
 
 func character_flip(dir : float) -> void:
 	if dir > 0:
-		flip = false
+		if not flip_is_right:
+			flip = false
+		else:
+			flip = true
 	elif dir < 0:
-		flip = true
+		if not flip_is_right:
+			flip = true
+		else:
+			flip = false
 		
 	sprite_2d.flip_h = flip
 	if flip:

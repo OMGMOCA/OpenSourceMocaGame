@@ -247,6 +247,7 @@ state_machine_type = 1
 states/attack01/node = SubResource("AnimationNodeAnimation_c4sl4")
 states/attack01/position = Vector2(411, 100)
 transitions = ["Start", "attack01", SubResource("AnimationNodeStateMachineTransition_2ddhg")]
+graph_offset = Vector2(-43, -35)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e2gi7"]
 animation = &"idle"
@@ -293,7 +294,7 @@ states/jump/position = Vector2(613, 100)
 states/walk/node = SubResource("AnimationNodeAnimation_a7uwt")
 states/walk/position = Vector2(380, 252)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2grlu"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_447dm"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_o1rj1"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_1pja0"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_i6bi1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_gcj2a"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_plj6m")]
-graph_offset = Vector2(-174, 5)
+graph_offset = Vector2(-123, -46)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_drl60"]
 animation = &"death"
@@ -340,7 +341,7 @@ states/death/position = Vector2(543, -7)
 states/hit/node = SubResource("AnimationNodeAnimation_xlcpp")
 states/hit/position = Vector2(543, 93)
 transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_narjk"), "base", "attack", SubResource("AnimationNodeStateMachineTransition_48tyf"), "attack", "base", SubResource("AnimationNodeStateMachineTransition_if3pt"), "base", "hit", SubResource("AnimationNodeStateMachineTransition_wwudu"), "attack", "hit", SubResource("AnimationNodeStateMachineTransition_2xg06"), "hit", "base", SubResource("AnimationNodeStateMachineTransition_weuju"), "hit", "death", SubResource("AnimationNodeStateMachineTransition_08nqt")]
-graph_offset = Vector2(-360, -121)
+graph_offset = Vector2(-180, -74)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5owcd"]
 shader = ExtResource("6_433tc")
