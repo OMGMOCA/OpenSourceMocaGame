@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name MocaCharacter2d
 
-@export var SPEED = 100.0
+@export var SPEED : float = 100.0
 @export var health : int = 100
 @export var destroy_wait_time : int = 3
 @export var flip : bool = false
@@ -36,8 +36,11 @@ var attack_zone_loc : Vector2 = Vector2(0,0)
 var hit : bool = false
 var sound_hit : AudioStreamPlayer2D = null
 signal character_hit(attack_pos : Vector2,damage : int)
-
-
+#检测范围
+@export var can_detect : bool = false
+var detect_zone : Area2D = null
+var detect_zone_loc : Vector2 = Vector2(0,0)
+@export var detect_groups = ["Player"]
 
 func _ready() -> void:
 	#获取角色精灵
@@ -56,6 +59,12 @@ func _ready() -> void:
 	attack_zone_loc = attack_zone.position
 	#获取角色攻击时的动画
 	attack_sprite = attack_zone.find_child("Sprite2D")
+	#获取角色检测区
+	detect_zone = find_child("detectZone")
+	#detect_zone_loc用于角色翻转时检测区域的位置调整
+	detect_zone_loc = detect_zone.position
+	
+	character_detect_bine()
 	character_attack_bind()
 	character_hit_bind()
 	
@@ -96,7 +105,21 @@ func on_character_hit(is_player : bool,attack_pos : Vector2,_damage : int) -> vo
 	#攻击期间应该禁止角色翻转，直到当前动作执行结束
 	health -= _damage
 	attack_feedback(is_player)
-	
+
+func character_detect_bine() -> void:
+	detect_zone.monitoring = true
+	detect_zone.body_entered.connect(on_detect)
+func on_detect(body: Node2D) -> void:
+	pass
+	#if not can_detect: return
+	#if body != self:
+		##print(name," on_detect - body: ",body)
+		#for group in detect_groups:
+			#if body.is_in_group(group):
+				##发送消息给被击中的角色
+				#print(name," on_detect - group: ",group)
+				#break
+
 func character_attack_bind() -> void:
 	animation_tree.animation_started.connect(on_anima_attack_started)
 	animation_tree.animation_finished.connect(on_anima_attack_finished)
@@ -201,8 +224,10 @@ func character_flip(dir : float) -> void:
 	sprite_2d.flip_h = flip
 	if flip:
 		attack_zone.position = Vector2(-attack_zone_loc.x,attack_zone_loc.y)
+		detect_zone.position = Vector2(-detect_zone_loc.x,detect_zone_loc.y)
 	else:
 		attack_zone.position = Vector2(attack_zone_loc.x,attack_zone_loc.y)
+		detect_zone.position = Vector2(detect_zone_loc.x,detect_zone_loc.y)
 	attack_sprite.flip_h = flip
 
 	

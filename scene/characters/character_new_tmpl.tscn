@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bbt512b3oqqht"]
+[gd_scene load_steps=47 format=3 uid="uid://bbt512b3oqqht"]
 
 [ext_resource type="Script" path="res://scripts/character2d/moca_player2d.gd" id="1_quowp"]
 [ext_resource type="Shader" path="res://scripts/shader/moca_char_shader.gdshader" id="2_2s3td"]
@@ -350,6 +350,9 @@ shader_parameter/replace_color = Color(5, 5, 5, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1r4rb"]
 size = Vector2(13, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wysjv"]
+size = Vector2(50, 32)
+
 [node name="character_new_tmpl" type="CharacterBody2D"]
 z_index = 7
 collision_layer = 2
@@ -404,3 +407,13 @@ frame = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackZone"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_1r4rb")
+
+[node name="detectZone" type="Area2D" parent="."]
+position = Vector2(1, -16)
+collision_layer = 0
+collision_mask = 3
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectZone"]
+shape = SubResource("RectangleShape2D_wysjv")

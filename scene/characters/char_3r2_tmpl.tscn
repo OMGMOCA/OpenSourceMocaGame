@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://dvjrha8dnanh5"]
+[gd_scene load_steps=57 format=4 uid="uid://dvjrha8dnanh5"]
 
 [ext_resource type="Script" path="res://scripts/character2d/moca_character2d.gd" id="1_3ydyy"]
 [ext_resource type="Script" path="res://scripts/character2d/frame_reset_3r2.gd" id="1_61r7m"]
@@ -760,10 +760,14 @@ shader_parameter/replace_color = Color(5, 5, 5, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wrbh"]
 size = Vector2(13, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cdnjg"]
+size = Vector2(80, 40)
+
 [node name="char_3r2_tmpl" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_3ydyy")
 flip_is_right = true
+can_detect = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_hopf4")
@@ -904,6 +908,17 @@ frame = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackZone"]
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_8wrbh")
+
+[node name="detectZone" type="Area2D" parent="."]
+position = Vector2(-33, -32)
+scale = Vector2(1.5, 1.5)
+collision_layer = 0
+collision_mask = 3
+input_pickable = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detectZone"]
+shape = SubResource("RectangleShape2D_cdnjg")
 
 [node name="Sound_jump" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_kw2i1")
