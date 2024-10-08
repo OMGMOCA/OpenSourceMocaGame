@@ -1450,7 +1450,6 @@ script = ExtResource("14_kvkse")
 
 [node name="enemy_01" parent="characters/Enemies" groups=["Enemies"] instance=ExtResource("1_6rdg4")]
 position = Vector2(-278, -8)
-flip_is_right = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
