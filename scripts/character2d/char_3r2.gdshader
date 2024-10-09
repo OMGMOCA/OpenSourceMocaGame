@@ -10,14 +10,14 @@ uniform bool is_hit = false;
 
 void fragment() {
 	vec2 uv = UV;
-	
+
 	//像素化
 	//uv *= pixel_count;
 	//uv = floor(uv);
 	//uv /= pixel_count;
-	
+
 	//COLOR = texture(TEXTURE, uv);
-	
+
 	//描边
 	vec2 uv_up = uv + vec2(0,TEXTURE_PIXEL_SIZE.y) * outline_width;
 	vec2 uv_down = uv + vec2(0,-TEXTURE_PIXEL_SIZE.y) * outline_width;
@@ -35,7 +35,7 @@ void fragment() {
 	//if (outline.a > 0.0) {
 		//outline = outline_color;
 	//}
-	
+
 	//获取原始颜色
 	vec4 original_color = texture(TEXTURE,uv);
 	//if (original_color.a < 1.0) {
@@ -49,10 +49,11 @@ void fragment() {
 	//命中改色
 	if (is_hit){
 		vec4 tex_color = texture(TEXTURE, UV);
-		COLOR = vec4(replace_color.rgb, tex_color.a);
+		//COLOR = vec4(replace_color.rgb, tex_color.a);
+		vec4 color = mix(tex_color,replace_color,replace_color.a);
+		COLOR = vec4(color.rgb, tex_color.a);
 	}
 
-	
-	
-}
 
+
+}
