@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://scripts/character2d/char_3r2.gdshader" id="1_yopfb"]
 [ext_resource type="Shader" path="res://scripts/shader/hdr_light.gdshader" id="3_kowee"]
 [ext_resource type="Texture2D" uid="uid://boc7bfpailusd" path="res://assets/sprites/characters/attack01.png" id="4_1qmpn"]
-[ext_resource type="AudioStream" uid="uid://87fyp0bgi5jg" path="res://assets/sounds/jump.wav" id="5_kw2i1"]
+[ext_resource type="AudioStream" uid="uid://dav1dmjnfiel1" path="res://assets/sounds/jump.wav" id="5_kw2i1"]
 [ext_resource type="AudioStream" uid="uid://bni52808fts02" path="res://assets/sounds/slash-21834.mp3" id="6_jrdgi"]
 [ext_resource type="AudioStream" uid="uid://cmql7j8076ikc" path="res://assets/sounds/hit-swing-sword-small-2-95566.mp3" id="7_gruqp"]
 [ext_resource type="Texture2D" uid="uid://by2x0qohtktma" path="res://assets/sprites/characters/hit01.png" id="9_g50hi"]

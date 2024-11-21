@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://daxklujhkt2xs" path="res://assets/sprites/desert_town/desert_jump_1024_4.png" id="5_luw8j"]
 [ext_resource type="PackedScene" uid="uid://b1knsq71acpb3" path="res://scene/scn_assets/platform/movable_platform_2.tscn" id="6_r0v8y"]
 [ext_resource type="PackedScene" uid="uid://babclauvqhm0y" path="res://scene/scn_assets/platform/movable_platform_desert.tscn" id="6_xealk"]
-[ext_resource type="Texture2D" uid="uid://cckk838lp7l4c" path="res://assets/sprites/slime_green.png" id="7_6jba4"]
+[ext_resource type="Texture2D" uid="uid://dklvgad0juvdw" path="res://assets/sprites/slime_green.png" id="7_6jba4"]
 [ext_resource type="Script" path="res://scripts/assets_sprites/trap.gd" id="7_gkhal"]
-[ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="7_jq6a0"]
+[ext_resource type="Texture2D" uid="uid://dxun4k224b7yv" path="res://assets/sprites/world_tileset.png" id="7_jq6a0"]
 [ext_resource type="Texture2D" uid="uid://c6d7mq8lrpmta" path="res://assets/sprites/tiles/road.png" id="8_1w8pw"]
 [ext_resource type="Texture2D" uid="uid://vcyptpgie32e" path="res://assets/sprites/building/clouds_512_4.png" id="9_0jwog"]
 [ext_resource type="Texture2D" uid="uid://b816oiwpmpa4y" path="res://assets/sprites/desert_town/tile_sand_grass.png" id="9_hyryn"]
@@ -112,6 +112,45 @@ _data = {
 "movable_platform": SubResource("Animation_v3l6o")
 }
 
+[sub_resource type="Animation" id="Animation_717d0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-80, -68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:is_play")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:is_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_lgkfs"]
 resource_name = "new_animation"
 length = 6.0
@@ -151,45 +190,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, true, false, false]
-}
-
-[sub_resource type="Animation" id="Animation_717d0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-80, -68)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:is_play")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:is_right")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_txjhm"]
