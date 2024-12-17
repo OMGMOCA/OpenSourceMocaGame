@@ -28,7 +28,15 @@ texture = ExtResource("3_j73mh")
 offset = Vector2(0, -40)
 hframes = 8
 vframes = 8
-frame = 3
+frame = 4
+
+[node name="Sprite2D2" type="Sprite2D" parent="assets_root"]
+position = Vector2(-6, 33)
+texture = ExtResource("3_j73mh")
+offset = Vector2(0, -40)
+hframes = 8
+vframes = 8
+frame = 4
 
 [node name="front_scene" type="Node2D" parent="."]
 z_index = 2
