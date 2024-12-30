@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://v5l0edn5ehe" path="res://scene/scn_assets/tools/state_assets_selector.tscn" id="4_ojj8a"]
 [ext_resource type="Texture2D" uid="uid://dk62jtk22fs7k" path="res://assets/sprites/desert_town/town_1024_8.png" id="5_ijg46"]
 [ext_resource type="Texture2D" uid="uid://iynb7jesug4x" path="res://assets/sprites/desert_town/town_512_8.png" id="6_hxsd3"]
-[ext_resource type="Texture2D" uid="uid://dig8kj2gohu6m" path="res://assets/sprites/world_tileset.png" id="8_ai2ri"]
+[ext_resource type="Texture2D" uid="uid://dxun4k224b7yv" path="res://assets/sprites/world_tileset.png" id="8_ai2ri"]
 [ext_resource type="Texture2D" uid="uid://blmuiiauk41qd" path="res://assets/sprites/desert_town/sand_bg_l.png" id="9_626dp"]
 [ext_resource type="Texture2D" uid="uid://vcyptpgie32e" path="res://assets/sprites/building/clouds_512_4.png" id="9_fn48g"]
 [ext_resource type="Texture2D" uid="uid://c6d7mq8lrpmta" path="res://assets/sprites/tiles/road.png" id="9_r5ek7"]
@@ -623,7 +623,7 @@ tile_set = SubResource("TileSet_kr0jx")
 
 [node name="GradientBackground" type="Sprite2D" parent="background/Parallax/background"]
 z_index = -100
-position = Vector2(24, -192)
+position = Vector2(62, -197)
 scale = Vector2(40, 7)
 texture = SubResource("GradientTexture2D_bka6r")
 
@@ -684,6 +684,7 @@ vframes = 1
 sprite_index = 0
 
 [node name="bg03" type="ParallaxLayer" parent="background/Parallax"]
+position = Vector2(2, 0)
 motion_scale = Vector2(0.9, 1)
 
 [node name="buildings10" parent="background/Parallax/bg03" instance=ExtResource("4_ojj8a")]

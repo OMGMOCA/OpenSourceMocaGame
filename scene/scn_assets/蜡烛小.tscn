@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqspa7sf2v4tw"]
+
+[ext_resource type="Texture2D" uid="uid://c3v6y3bohclbj" path="res://assets/sprites/snow/light_sprites.png" id="1_75qig"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mefdw"]
+atlas = ExtResource("1_75qig")
+region = Rect2(100, 100, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14vek"]
+atlas = ExtResource("1_75qig")
+region = Rect2(200, 100, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_liw0t"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_mefdw")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_14vek")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="蜡烛" type="Node2D"]
+
+[node name="图像层" type="Sprite2D" parent="."]
+position = Vector2(0, -40)
+texture = ExtResource("1_75qig")
+hframes = 8
+vframes = 8
+frame = 8
+
+[node name="灯光层" type="AnimatedSprite2D" parent="."]
+modulate = Color(31.892, 6.486, 0.122, 1)
+position = Vector2(0, -40)
+sprite_frames = SubResource("SpriteFrames_liw0t")
+autoplay = "default"
+frame = 1
+frame_progress = 0.823387

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv8rc0ob7eyel"]
+
+[ext_resource type="Texture2D" uid="uid://c3v6y3bohclbj" path="res://assets/sprites/snow/light_sprites.png" id="1_10m2g"]
+
+[node name="路灯" type="Node2D"]
+
+[node name="图像层" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_10m2g")
+hframes = 8
+vframes = 8
+frame = 16
+
+[node name="灯光层" type="Sprite2D" parent="."]
+modulate = Color(10, 4.2, 0, 1)
+position = Vector2(0, -12)
+texture = ExtResource("1_10m2g")
+hframes = 8
+vframes = 8
+frame = 17

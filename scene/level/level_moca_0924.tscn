@@ -14,12 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://bbt512b3oqqht" path="res://scene/characters/character_new_tmpl.tscn" id="15_vt7ue"]
 [ext_resource type="PackedScene" uid="uid://347iqbn3po73" path="res://scene/scn_dialogues/asker_test.tscn" id="18_nonaq"]
 
-[sub_resource type="Gradient" id="Gradient_wm6v1"]
+[sub_resource type="Gradient" id="Gradient_qnis4"]
 offsets = PackedFloat32Array(0, 0.561562)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_dsdkh"]
-gradient = SubResource("Gradient_wm6v1")
+gradient = SubResource("Gradient_qnis4")
 fill = 1
 fill_from = Vector2(0.504274, 0.487179)
 fill_to = Vector2(1, 1)
@@ -63,19 +63,19 @@ _data = {
 "platform_move": SubResource("Animation_nc3h5")
 }
 
-[sub_resource type="Gradient" id="Gradient_k2w0d"]
+[sub_resource type="Gradient" id="Gradient_b4t2a"]
 offsets = PackedFloat32Array(0.737237, 0.995495)
 colors = PackedColorArray(0.280704, 0.858665, 1, 1, 0.980211, 0.705353, 0.763552, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bka6r"]
-gradient = SubResource("Gradient_k2w0d")
+gradient = SubResource("Gradient_b4t2a")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="Curve" id="Curve_qclxo"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.202417, 0.595524), 2.3488, 2.3488, 0, 0, Vector2(0.824773, 0.560044), -2.936, -2.936, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_jy3s6"]
+[sub_resource type="CurveTexture" id="CurveTexture_f2gij"]
 curve = SubResource("Curve_qclxo")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f8ev2"]
@@ -89,7 +89,7 @@ gravity = Vector3(0, 20, 0)
 scale_min = 0.5
 scale_max = 3.0
 color = Color(1, 0.717647, 0.937255, 1)
-alpha_curve = SubResource("CurveTexture_jy3s6")
+alpha_curve = SubResource("CurveTexture_f2gij")
 
 [node name="level_moca_0924" type="Node2D"]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/character2d/moca_player2d.gd" id="1_quowp"]
 [ext_resource type="Shader" path="res://scripts/shader/moca_char_shader.gdshader" id="2_2s3td"]
 [ext_resource type="Texture2D" uid="uid://cyaq2fp4s380d" path="res://assets/sprites/characters/moca_cc.png" id="2_5wdt8"]
-[ext_resource type="AudioStream" uid="uid://87fyp0bgi5jg" path="res://assets/sounds/jump.wav" id="3_l55qa"]
+[ext_resource type="AudioStream" uid="uid://dav1dmjnfiel1" path="res://assets/sounds/jump.wav" id="3_l55qa"]
 [ext_resource type="AudioStream" uid="uid://bni52808fts02" path="res://assets/sounds/slash-21834.mp3" id="4_m0wal"]
 [ext_resource type="AudioStream" uid="uid://cmql7j8076ikc" path="res://assets/sounds/hit-swing-sword-small-2-95566.mp3" id="5_vrrjq"]
 [ext_resource type="Texture2D" uid="uid://boc7bfpailusd" path="res://assets/sprites/characters/attack01.png" id="5_yevw6"]
@@ -367,7 +367,7 @@ states/jump/position = Vector2(613, 100)
 states/walk/node = SubResource("AnimationNodeAnimation_a7uwt")
 states/walk/position = Vector2(380, 252)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_2grlu"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_447dm"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_o1rj1"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_1pja0"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_i6bi1"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_gcj2a"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_plj6m")]
-graph_offset = Vector2(-123, -46)
+graph_offset = Vector2(-182, -6)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_drl60"]
 animation = &"death"
